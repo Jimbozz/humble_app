@@ -8,20 +8,38 @@
 // $very-dark-blue: hsl(226, 43%, 10%);
 // $dark-blue: hsl(235, 46%, 20%);
 // $pale-blue: hsl(236, 100%, 87%);
+$color-grey-vary-dark: #1a1a1a;
+$color-grey-vary-dark-transparent: #1a1a1ae8;
+$color-gray-dark: #282828;
+$color-gray-line: #444444;
+$color-gray-medium: #b0afaf;
+$color-gray-light: #e6e8e6;
+$color-white: white;
+$color-danger: #9c1a12;
+$color-danger-bright: #ff4545;
+$color-danger-muted: hsla(3, 79, 34, 0.3);
+$color-green: #defe65;
+$color-success: #57ab5a;
+$color-success-muted: hsla(122, 33, 51, 0.3);
+$color-warning: #ae7c14;
+$color-warning-muted: hsla(41, 79, 38, 0.3);
 
 //Bootstrap
 $theme-colors: (
-  "primary": #145bea,
+  "primary": $color-green,
   "secondary": #833bec,
   "success": #1ce1ac,
   "info": #ff7d50,
   "warning": #ffbe0b,
   "danger": #ff007f,
   "light": #c0ccda,
-  "dark": #001738,
+  "dark": $color-gray-dark,
 );
-$font-family-base: "Inter Tight", sans-serif;
+$font-family-base: "Roboto", sans-serif;
 $border-radius: 3px;
+$body-bg: $color-grey-vary-dark;
+$body-color: $color-gray-light;
+$dropdown-dark-bg: $color-gray-dark;
 
 @import "~bootstrap/scss/bootstrap";
 
