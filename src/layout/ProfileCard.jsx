@@ -4,7 +4,7 @@ function ProfileCard() {
   return (
     <aside className="profile-card-container">
       <ul>
-        <li>Nav</li>
+        <li>Profile card</li>
       </ul>
     </aside>
   );
