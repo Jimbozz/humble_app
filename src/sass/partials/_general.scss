@@ -109,26 +109,26 @@ main {
   overflow-y: auto;
 }
 ul {
+  padding: 0px;
   list-style: none;
 }
 li {
   color: #fff;
 }
 aside {
-  border-right: 1px solid #ededed;
   background: #36c;
   flex: 1 0 10%;
   padding: 1rem;
 }
 
 .sidebar {
-  flex: 1;
+  flex: 2;
   @media (max-width: 700px) {
     flex: 0;
   }
 }
 .profile-card-container {
-  flex: 1;
+  flex: 2;
 
   @media (max-width: 700px) {
     display: none;
@@ -155,4 +155,11 @@ aside {
     align-items: center;
     justify-content: space-between;
   }
+}
+
+.heading-container {
+  background-color: $color-grey-vary-dark-transparent;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
 }
