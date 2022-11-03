@@ -1,0 +1,33 @@
+//Custom
+// $colour-error: rgb(247, 11, 11);
+// $colour-warning: rgb(236, 158, 24);
+// $colour-success: rgb(6, 131, 6);
+
+// $blue: hsl(246, 80%, 60%);
+// $blue-shade: hsl(246, 61%, 53%, 1);
+// $very-dark-blue: hsl(226, 43%, 10%);
+// $dark-blue: hsl(235, 46%, 20%);
+// $pale-blue: hsl(236, 100%, 87%);
+
+//Bootstrap
+$theme-colors: (
+  "primary": #145bea,
+  "secondary": #833bec,
+  "success": #1ce1ac,
+  "info": #ff7d50,
+  "warning": #ffbe0b,
+  "danger": #ff007f,
+  "light": #c0ccda,
+  "dark": #001738,
+);
+$font-family-base: "Inter Tight", sans-serif;
+$border-radius: 3px;
+
+@import "~bootstrap/scss/bootstrap";
+
+//Partials
+
+@import "./partials/general";
+@import "./partials/navbar";
+// @import "./partials/forms";
+// @import "./partials/cardStyles";
