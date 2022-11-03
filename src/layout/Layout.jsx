@@ -14,9 +14,7 @@ function Layout(props) {
   return (
     <div className="wrapper">
       <MainNav />
-      <main className="main-content">
-        <Container>{props.children}</Container>
-      </main>
+      <main className="main-content">{props.children}</main>
       <ProfileCard />
     </div>
   );
