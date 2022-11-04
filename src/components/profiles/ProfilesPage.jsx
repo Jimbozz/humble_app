@@ -1,9 +1,10 @@
 import { Card } from "react-bootstrap";
 import Heading from "../../layout/Heading";
+import Layout from "../../layout/Layout";
 
 function ProfilesPage() {
   return (
-    <>
+    <Layout>
       <Heading content="Profiles Page" />
       <Card bg="dark">
         <Card.Img variant="top" src="holder.js/100px180" />
@@ -15,7 +16,7 @@ function ProfilesPage() {
           </Card.Text>
         </Card.Body>
       </Card>
-    </>
+    </Layout>
   );
 }
 
