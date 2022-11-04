@@ -4,7 +4,7 @@ function Heading({ size = "1", content }) {
   const VariableHeading = `h${size}`;
 
   return (
-    <header className="heading-container">
+    <header className="main-content__heading">
       <VariableHeading>{content}</VariableHeading>
     </header>
   );
