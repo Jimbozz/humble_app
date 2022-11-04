@@ -40,6 +40,14 @@ $border-radius: 3px;
 $body-bg: $color-grey-vary-dark;
 $body-color: $color-gray-light;
 $dropdown-dark-bg: $color-gray-dark;
+$border-radius: 8px;
+$input-border-color: transparent;
+$input-bg: $color-grey-vary-dark;
+$btn-link-color: $color-green;
+// $btn-font-weight: bold;
+// $input-btn-padding-y: 1rem;
+// $input-btn-padding-x: 1rem;
+// $input-color: $very-dark-blue;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -47,5 +55,7 @@ $dropdown-dark-bg: $color-gray-dark;
 
 @import "./partials/general";
 @import "./partials/navbar";
+@import "./partials/register";
+@import "./partials/forms";
 // @import "./partials/forms";
 // @import "./partials/cardStyles";
