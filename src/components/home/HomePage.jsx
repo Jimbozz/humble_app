@@ -1,9 +1,10 @@
 import { Card } from "react-bootstrap";
 import Heading from "../../layout/Heading";
+import Layout from "../../layout/Layout";
 
 function HomePage() {
   return (
-    <>
+    <Layout>
       <Heading content="Home Page" />
       <Card bg="dark">
         <Card.Img variant="top" src="holder.js/100px180" />
@@ -87,7 +88,7 @@ function HomePage() {
         repudiandae magni quae necessitatibus? Fuga eveniet sed commodi
         consequatur quae, sequi adipisci.
       </p>
-    </>
+    </Layout>
   );
 }
 
