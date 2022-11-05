@@ -1,6 +1,15 @@
 import { Button, Container } from "react-bootstrap";
+import LoginForm from "./LoginForm";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+
+  function handleButtonClick(path) {
+    navigate(path);
+  }
+
   return (
     <Container className="form-wrapper d-flex flex-column align-items-center justify-content-center">
       <div className="d-flex flex-column align-items-center">
@@ -12,9 +21,12 @@ export default function LoginPage() {
           />
         </div>
         <h1>Login page</h1>
+        <LoginForm />
         <div>
-          <small>Already have an account ?</small>
-          <Button variant="link">Login here</Button>
+          <small>Need to register a new account?</small>
+          <Button variant="link" onClick={() => handleButtonClick("/register")}>
+            Register here
+          </Button>
         </div>
       </div>
     </Container>
