@@ -5,6 +5,7 @@ import Layout from "./layout/Layout";
 import ProfilesPage from "./components/profiles/ProfilesPage";
 import { AuthProvider } from "./context/AuthContext";
 import RegisterPage from "./components/register/RegisterPage";
+import LoginPage from "./components/login/LoginPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/register" element={<RegisterPage />} />
+        <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/profiles" element={<ProfilesPage />} />
 
         {/* <Route exact path="/page/:id" element={<PageSpecific />} />
