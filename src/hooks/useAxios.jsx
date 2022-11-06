@@ -13,7 +13,7 @@ export default function useAxios() {
   });
 
   apiClient.interceptors.request.use((config) => {
-    const token = auth.token;
+    const token = auth.accessToken;
     config.headers.Authorization = token ? `Bearer ${token}` : "";
     return config;
   });
