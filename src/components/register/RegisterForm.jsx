@@ -62,6 +62,7 @@ export default function RegisterForm() {
     try {
       const response = await axios.post(registerUrl, data);
       console.log("response", response.data);
+      //Look to see if we can tell if user is already in database!
       navigate("/login");
       // if (response.ok) {
       //   navigate("/login");
