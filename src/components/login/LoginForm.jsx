@@ -71,7 +71,7 @@ export default function LoginForm() {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter email"
+            placeholder="Eg: first.last@stud.noroff.no"
             aria-describedby="userEmail"
             {...register("email")}
           />
