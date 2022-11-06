@@ -20,7 +20,6 @@ export default function LoginPage() {
             alt="humble logo"
           />
         </div>
-        <h1>Login page</h1>
         <LoginForm />
         <div>
           <small>Need to register a new account?</small>
