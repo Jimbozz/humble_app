@@ -46,7 +46,8 @@ $input-bg: $color-grey-vary-dark;
 $btn-link-color: $color-green;
 // $btn-font-weight: bold;
 // $input-btn-padding-y: 1rem;
-// $input-btn-padding-x: 1rem;
+$input-btn-padding-x: 1rem;
+$btn-font-weight: 500;
 // $input-color: $very-dark-blue;
 
 @import "~bootstrap/scss/bootstrap";
