@@ -43,7 +43,8 @@ export default function PostsList() {
     <Container>
       <Row xs={1} className="g-4">
         {posts.map((post) => {
-          const { id, title, body, author, created, avatar } = post;
+          const { id, title, body, author, created, reactions, comments } =
+            post;
           return (
             <Col key={id}>
               <PostCard
@@ -52,6 +53,8 @@ export default function PostsList() {
                 body={body}
                 author={author}
                 created={created}
+                reactions={reactions}
+                comments={comments}
               />
             </Col>
           );
