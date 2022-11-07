@@ -1,11 +1,20 @@
-import React, { useState } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
-import moment from "moment";
+import { format } from "date-fns";
 import fallback from "../../assets/humble-logo.png";
+import { AiOutlineHeart } from "react-icons/ai";
+import { BiComment } from "react-icons/bi";
+import { BsThreeDots } from "react-icons/bs";
 
-export default function PostCard({ title, body, id, author, created }) {
-  // const [imageError, setImageError] = useState(false);
+export default function PostCard({
+  title,
+  body,
+  id,
+  author,
+  created,
+  reactions,
+  comments,
+}) {
   const placeholderImage = fallback;
 
   const onImageError = (event) => {
@@ -16,37 +25,38 @@ export default function PostCard({ title, body, id, author, created }) {
   return (
     <Card bg="dark" className="h-100" id={id}>
       <Card.Body>
-        <div className="card-profile">
+        <div className="card-profile mb-3">
           <div className="card-profile__user">
-            {/* <Img
-              src={
-                author.avatar
-                  ? author.avatar
-                  : "https://unsplash.com/photos/iulnjpZyWnc"
-              }
-              alt="Some title"
-            /> */}
             <Card.Img
               className="card-profile__user-image"
               src={author.avatar ? author.avatar : placeholderImage}
               alt={author.name}
               onError={onImageError}
             />
-            {/* <Card.Img
-              className="card-profile__user-image"
-              src={author.avatar || "https://unsplash.com/photos/vqTWfa4DjEk"}
-              alt={author.name}
-              onError={(event) => (event.target.style.display = "none")}
-            /> */}
           </div>
           <div className="card-profile__content">
-            <Card.Title>{author.name}</Card.Title>
-            <div>{moment(created).format("D MMMM YYYY")}</div>
+            <div className="card-profile__content--heading">{author.name}</div>
+            <small className="card-profile__content--date">
+              {format(new Date(created), "d MMMM Y")}
+            </small>
           </div>
+          <Button variant="options">
+            <BsThreeDots />
+          </Button>
         </div>
-
         <Card.Title>{title}</Card.Title>
         <Card.Text>{body}</Card.Text>
+        <hr className="card-line"></hr>
+        <div className="d-flex gap-3">
+          <Button variant="heart" className="d-flex align-items-center">
+            <AiOutlineHeart className="btn-heart__icon" />
+            <small>{reactions.length}</small>
+          </Button>
+          <Button variant="comment" className="d-flex align-items-center">
+            <BiComment className="btn-comment__icon" />
+            <small>{comments.length}</small>
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );
