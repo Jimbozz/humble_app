@@ -8,14 +8,14 @@ import {
   Button,
 } from "react-bootstrap";
 import MainNav from "./MainNav";
-import ProfileCard from "./ProfileCard";
+import UserCard from "./UserCard";
 
 function Layout(props) {
   return (
     <div className="wrapper">
       <MainNav />
       <main className="main-content">{props.children}</main>
-      <ProfileCard />
+      <UserCard />
     </div>
   );
 }
