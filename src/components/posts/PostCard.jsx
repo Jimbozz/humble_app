@@ -6,6 +6,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import OptionsButton from "./OptionsButton";
+import { Link } from "react-router-dom";
 
 export default function PostCard({
   title,
@@ -24,6 +25,7 @@ export default function PostCard({
   };
 
   return (
+    // <Link to={`post/${id}`} key={id}></Link>
     <Card bg="dark" className="h-100" id={id}>
       <Card.Body>
         <div className="card-profile mb-3">
@@ -37,9 +39,11 @@ export default function PostCard({
               />
             </div>
             <div className="card-profile-top__content">
-              <div className="card-profile-top__content--heading">
-                {author.name}
-              </div>
+              <Link to={`profile/${author.name}`}>
+                <div className="card-profile-top__content--heading">
+                  {author.name}
+                </div>
+              </Link>
               <small className="card-profile-top__content--date">
                 {format(new Date(created), "d MMMM Y")}
               </small>
