@@ -1,12 +1,3 @@
-import {
-  Col,
-  Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-  Row,
-  Button,
-} from "react-bootstrap";
 import MainNav from "./MainNav";
 import UserCard from "./UserCard";
 
