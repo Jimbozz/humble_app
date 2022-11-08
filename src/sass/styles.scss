@@ -48,6 +48,7 @@ $btn-link-color: $color-gray-medium;
 // $input-btn-padding-y: 1rem;
 $input-btn-padding-x: 1rem;
 $btn-font-weight: 500;
+$dropdown-dark-bg: $color-grey-vary-dark;
 // $input-color: $very-dark-blue;
 
 @import "~bootstrap/scss/bootstrap";
@@ -58,7 +59,8 @@ $btn-font-weight: 500;
 @import "./partials/navbar";
 @import "./partials/register";
 @import "./partials/forms";
-@import "./partials/postCard";
-@import "./partials/buttonStyles";
+@import "./partials/post-card";
+@import "./partials/button-styles";
+@import "./partials/user-card";
 // @import "./partials/forms";
 // @import "./partials/cardStyles";
