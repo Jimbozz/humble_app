@@ -21,8 +21,7 @@ export default function UserCard() {
       try {
         const response = await http.get(url);
         console.log("response", response.data);
-        const userInfo = response.data;
-        setUser(userInfo);
+        setUser(response.data);
       } catch (error) {
         console.log(error);
         setError(error.toString());
@@ -36,24 +35,33 @@ export default function UserCard() {
   }
 
   return (
-    <aside className="profile-card-container">
+    <aside className="user-card-container">
       <Card bg="dark">
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
+        {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+        <Card.Body className="d-flex align-items-center flex-column user-body">
+          <div className="user-body__image-banner"></div>
+          <div className="user-body__image-avatar"></div>
+          {/* <Card.Img src="holder.js/100px180" /> */}
           <Card.Title>{user.name}</Card.Title>
-          <Card.Text>{user.email}</Card.Text>
-          <div className="d-flex">
-            <div>
-              <div>{user._count?.posts}</div>
-              <div>Posts</div>
+          <Card.Text className="user-body__email">{user.email}</Card.Text>
+          <div className="d-flex gap-3 card-body__data">
+            <div className="d-flex flex-column align-items-center user-body__data-item">
+              <div className="user-body__data-item_number">
+                {user._count?.posts}
+              </div>
+              <small>Posts</small>
             </div>
-            <div>
-              <div>{user._count?.followers}</div>
-              <div>Followers</div>
+            <div className="d-flex flex-column align-items-center user-body__data-item">
+              <div className="user-body__data-item_number">
+                {user._count?.followers}
+              </div>
+              <small>Followers</small>
             </div>
-            <div>
-              <div>{user._count?.following}</div>
-              <div>Following</div>
+            <div className="d-flex flex-column align-items-center user-body__data-item">
+              <div className="user-body__data-item_number">
+                {user._count?.following}
+              </div>
+              <small>Following</small>
             </div>
           </div>
         </Card.Body>
