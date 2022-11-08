@@ -48,6 +48,7 @@ export default function PostsList() {
           return (
             <Col key={id}>
               <PostCard
+                key={id}
                 id={id}
                 title={title}
                 body={body}
