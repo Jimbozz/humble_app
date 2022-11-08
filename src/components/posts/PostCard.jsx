@@ -5,6 +5,7 @@ import fallback from "../../assets/humble-logo.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
+import OptionsButton from "./OptionsButton";
 
 export default function PostCard({
   title,
@@ -26,23 +27,25 @@ export default function PostCard({
     <Card bg="dark" className="h-100" id={id}>
       <Card.Body>
         <div className="card-profile mb-3">
-          <div className="card-profile__user">
-            <Card.Img
-              className="card-profile__user-image"
-              src={author.avatar ? author.avatar : placeholderImage}
-              alt={author.name}
-              onError={onImageError}
-            />
+          <div className="card-profile-top">
+            <div className="card-profile-top__user">
+              <Card.Img
+                className="card-profile-top__user-image"
+                src={author.avatar ? author.avatar : placeholderImage}
+                alt={author.name}
+                onError={onImageError}
+              />
+            </div>
+            <div className="card-profile-top__content">
+              <div className="card-profile-top__content--heading">
+                {author.name}
+              </div>
+              <small className="card-profile-top__content--date">
+                {format(new Date(created), "d MMMM Y")}
+              </small>
+            </div>
           </div>
-          <div className="card-profile__content">
-            <div className="card-profile__content--heading">{author.name}</div>
-            <small className="card-profile__content--date">
-              {format(new Date(created), "d MMMM Y")}
-            </small>
-          </div>
-          <Button variant="options">
-            <BsThreeDots />
-          </Button>
+          <OptionsButton />
         </div>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{body}</Card.Text>
