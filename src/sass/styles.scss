@@ -49,6 +49,8 @@ $btn-link-color: $color-gray-medium;
 $input-btn-padding-x: 1rem;
 $btn-font-weight: 500;
 $dropdown-dark-bg: $color-grey-vary-dark;
+$modal-content-border-radius: $border-radius;
+$modal-content-bg: $color-gray-dark;
 // $input-color: $very-dark-blue;
 
 @import "~bootstrap/scss/bootstrap";
@@ -62,5 +64,6 @@ $dropdown-dark-bg: $color-grey-vary-dark;
 @import "./partials/post-card";
 @import "./partials/button-styles";
 @import "./partials/user-card";
+@import "./partials/modals";
 // @import "./partials/forms";
 // @import "./partials/cardStyles";
