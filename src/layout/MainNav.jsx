@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
+import CreatePostButton from "./CreatePost";
 
 function MainNav() {
   let activeStyle = {
@@ -48,9 +49,7 @@ function MainNav() {
             Logout
           </NavLink>
         </ul>
-        <Button variant="primary" className=" sidebar-content__button">
-          Create post
-        </Button>
+        <CreatePostButton />
         <hr className="sidebar-content__line"></hr>
         <ButtonGroup justified="true" className="sidebar-content__dropdown">
           <DropdownButton
