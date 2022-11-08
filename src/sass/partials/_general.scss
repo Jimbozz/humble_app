@@ -18,6 +18,10 @@ ul {
   margin-bottom: 0px;
 }
 
+a {
+  text-decoration: none;
+}
+
 //flex layout
 
 .sidebar {
@@ -26,8 +30,9 @@ ul {
     flex: 0;
   }
 }
-.profile-card-container {
+.user-card-container {
   flex: 2;
+  padding: 4.8rem 1rem;
 
   @media (max-width: 700px) {
     display: none;
