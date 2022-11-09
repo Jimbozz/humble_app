@@ -26,3 +26,22 @@
     margin: 3rem 0px 2rem 0px;
   }
 }
+
+//Tabbed section
+//May need to change styles as it is effecting the nav link components
+
+.nav-tabs {
+  border-bottom: 1px solid $color-gray-line;
+}
+
+.nav-link:hover {
+  background-color: $color-gray-line;
+}
+
+.nav-tabs .nav-link.active {
+  text-decoration: underline $color-green;
+
+  text-underline-position: under;
+  /* line-height: 10px; */
+  text-underline-offset: 9px;
+}
