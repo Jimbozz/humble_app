@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
-import fallback from "../../assets/humble-logo.png";
+import fallback from "../../assets/profile-placeholder.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
@@ -26,7 +26,7 @@ export default function PostCard({
 
   return (
     // <Link to={`post/${id}`} key={id}></Link>
-    <Card bg="dark" className="h-100" id={id}>
+    <Card bg="dark" className="h-100 card-width" id={id}>
       <Card.Body>
         <div className="card-profile mb-3">
           <div className="card-profile-top">
