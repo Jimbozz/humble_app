@@ -9,8 +9,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { BASE_URL } from "../../constants/api";
-import FormError from "../../common/FormError";
-import FormWarning from "../../common/FormWarning";
+import FormError from "../common/FormError";
+import FormWarning from "../common/FormWarning";
 
 const registerUrl = BASE_URL + "social/auth/register";
 const regex = new RegExp("[a-z0-9]+@stud.noroff.no");
