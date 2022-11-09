@@ -1,4 +1,4 @@
-import Heading from "../../layout/Heading";
+import Heading from "../common/Heading";
 import Layout from "../../layout/Layout";
 import PostsList from "../posts/PostsList";
 
