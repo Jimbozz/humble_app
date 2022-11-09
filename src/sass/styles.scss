@@ -51,6 +51,10 @@ $btn-font-weight: 500;
 $dropdown-dark-bg: $color-grey-vary-dark;
 $modal-content-border-radius: $border-radius;
 $modal-content-bg: $color-gray-dark;
+$nav-tabs-border-width: none;
+$nav-tabs-link-active-color: white;
+$nav-link-color: $color-gray-medium;
+$nav-link-hover-color: none;
 // $input-color: $very-dark-blue;
 
 @import "~bootstrap/scss/bootstrap";
