@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
+import AlertError from "../common/AlertError";
+import Loading from "../common/Loading";
 import PostCard from "./PostCard";
 
 export default function PostsList() {
@@ -28,15 +30,16 @@ export default function PostsList() {
   }, []);
 
   if (loading) {
-    return (
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return <div>Error: An error occurred here</div>;
+    return (
+      <AlertError>
+        There was an error loading posts. Please reload the page or try again
+        later.
+      </AlertError>
+    );
   }
 
   return (
