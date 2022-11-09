@@ -17,6 +17,11 @@ function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/register" element={<RegisterPage />} />
         <Route exact path="/profile/:id" element={<ProfileSpecificPage />} />
+        <Route
+          exact
+          path="profiles/profile/:id"
+          element={<ProfileSpecificPage />}
+        />
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/profiles" element={<ProfilesPage />} />
         {/* <Route exact path="/create" element={<CreatePost />} /> */}
