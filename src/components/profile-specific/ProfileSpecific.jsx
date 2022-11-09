@@ -6,13 +6,16 @@ import useAxios from "../../hooks/useAxios";
 import Loading from "../common/Loading";
 import AlertError from "../common/AlertError";
 import { Col, Container, Row, Tab, Tabs } from "react-bootstrap";
+import Posts from "./PostsList";
+import ProfileCard from "../profiles/ProfileCard";
+import { AlertInfo } from "../common/AlertInfo";
+import FollowersList from "./FollowersList";
 
 function ProfileSpecific() {
   let { id } = useParams();
-  console.log(id);
   const url = "social/profiles/" + id + "?_following=true&_followers=true";
-
   const [profile, setProfile] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const http = useAxios();
@@ -21,7 +24,7 @@ function ProfileSpecific() {
     async function getProfile() {
       try {
         const response = await http.get(url);
-        console.log("profile", response.data);
+        console.log(response.data);
         setProfile(response.data);
       } catch (error) {
         setError(error.toString());
@@ -51,23 +54,41 @@ function ProfileSpecific() {
         <div className="user-info__avatar">Avatar</div>
         <div className="user-info__email">{profile.email}</div>
       </div>
-      <Row className="justify-content-md-center">
-        <Col xs={3}>Followers {profile.followers.length}</Col>
-        <Col xs={3}>Following {profile.following.length}</Col>
+      <Row className="justify-content-md-center mb-3">
+        <Col sm={2}>Followers {profile.followers.length}</Col>
+        <Col sm={2}>Following {profile.following.length}</Col>
       </Row>
       <Tabs
-        defaultActiveKey="profile"
+        defaultActiveKey="posts"
         id="justify-tab-example"
         className="mb-3"
         justify>
-        <Tab eventKey="home" title="Home">
-          Some content goes here 234234
+        <Tab eventKey="posts" title="Posts" className="tab-link">
+          <Posts />
         </Tab>
-        <Tab eventKey="profile" title="Profile">
-          Other content goes here 234234
+        <Tab eventKey="followers" title="Followers">
+          {/* {profile.followers.map((item) => {
+              const { name, avatar } = item;
+              return (
+                <Col key={name}>
+                  <ProfileCard name={name} avatar={avatar} />
+                </Col>
+              );
+            })} */}
+          <FollowersList />
         </Tab>
-        <Tab eventKey="longer-tab" title="Loooonger Tab">
-          Some Some content goes here 234234
+        <Tab eventKey="following" title="Following">
+          <Row xs={1} className="g-4">
+            {/*Check to see if you can check for length and add an alert instead of calling for more data. */}
+            {/* {profile.following.map((item) => {
+              const { name, avatar } = item;
+              return (
+                <Col key={name}>
+                  <ProfileCard name={name} avatar={avatar} />
+                </Col>
+              );
+            })} */}
+          </Row>
         </Tab>
       </Tabs>
     </Container>
