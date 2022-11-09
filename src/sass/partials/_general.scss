@@ -9,8 +9,16 @@ body {
   height: 100vh;
   font-size: calc(13px + 0.2vw);
 }
+
+main::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
 main {
   overflow-y: auto;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
 }
 ul {
   padding: 0px;
@@ -32,9 +40,9 @@ a {
 }
 .user-card-container {
   flex: 2;
-  padding: 4.8rem 1rem;
+  padding: 5rem 1rem 5rem 0px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     display: none;
   }
 }
@@ -45,6 +53,11 @@ a {
   @media (max-width: 500px) {
     flex-direction: column-reverse;
   }
+}
+//max-width for all cards in main content
+.card-width {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 //main center section of site
@@ -58,5 +71,14 @@ a {
     position: sticky;
     top: 0;
     z-index: 1;
+    margin-bottom: 2rem;
   }
+}
+
+//loader spinner
+
+.loader-spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
