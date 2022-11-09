@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import fallback from "../../assets/profile-placeholder.png";
+import { Link } from "react-router-dom";
 
 export default function ProfileCard({ name, avatar }) {
   const placeholderImage = fallback;
@@ -23,7 +24,11 @@ export default function ProfileCard({ name, avatar }) {
               onError={onImageError}
             />
           </div>
-          <Card.Title className="profile-card__content-name">{name}</Card.Title>
+          <Link to={`profile/${name}`}>
+            <Card.Title className="profile-card__content-name">
+              {name}
+            </Card.Title>
+          </Link>
         </div>
         <Button variant="outline-primary">Follow</Button>
       </Card.Body>
