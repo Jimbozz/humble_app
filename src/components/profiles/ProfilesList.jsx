@@ -14,7 +14,9 @@ function ProfilesList() {
   useEffect(() => {
     async function getProfiles() {
       try {
-        const response = await http.get("social/profiles");
+        const response = await http.get(
+          "social/profiles/?_following=true&_followers=true"
+        );
         console.log("hello", response.data);
         setProfiles(response.data);
       } catch (error) {
