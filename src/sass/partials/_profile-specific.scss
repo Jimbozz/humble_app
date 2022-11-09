@@ -1,0 +1,28 @@
+.user-info {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__banner {
+    background-color: $color-gray-dark;
+    border-radius: 4px 4px 0px 0px;
+    height: 10rem;
+    width: 100%;
+  }
+
+  &__avatar {
+    position: absolute;
+    bottom: 70px;
+    width: 5rem;
+    height: 5rem;
+    border-radius: $border-radius;
+    background-color: $color-grey-vary-dark;
+    border: 3px solid $color-gray-dark;
+  }
+
+  &__email {
+    margin: 3rem 0px 2rem 0px;
+  }
+}
