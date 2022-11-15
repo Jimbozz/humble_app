@@ -49,28 +49,25 @@ function Posts() {
   }
 
   return (
-    <Container>
-      <Row xs={1} className="g-4">
-        {posts.map((post) => {
-          const { id, title, body, author, created, reactions, comments } =
-            post;
-          return (
-            <Col key={id}>
-              <PostCard
-                key={id}
-                id={id}
-                title={title}
-                body={body}
-                author={author}
-                created={created}
-                reactions={reactions}
-                comments={comments}
-              />
-            </Col>
-          );
-        })}
-      </Row>
-    </Container>
+    <Row xs={1} className="g-4">
+      {posts.map((post) => {
+        const { id, title, body, author, created, reactions, comments } = post;
+        return (
+          <Col key={id}>
+            <PostCard
+              key={id}
+              id={id}
+              title={title}
+              body={body}
+              author={author}
+              created={created}
+              reactions={reactions}
+              comments={comments}
+            />
+          </Col>
+        );
+      })}
+    </Row>
   );
 }
 
