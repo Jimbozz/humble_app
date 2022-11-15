@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
-import fallback from "../../assets/profile-placeholder.png";
+import placeholderImage from "../../assets/profile-placeholder.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
@@ -17,11 +17,11 @@ export default function PostCard({
   reactions,
   comments,
 }) {
-  const placeholderImage = fallback;
+  const placeholder = placeholderImage;
 
   const onImageError = (event) => {
     event.target.onerror = null;
-    event.target.src = placeholderImage;
+    event.target.src = placeholder;
   };
 
   return (
@@ -33,7 +33,7 @@ export default function PostCard({
             <div className="card-profile-top__user">
               <Card.Img
                 className="card-profile-top__user-image"
-                src={author.avatar ? author.avatar : placeholderImage}
+                src={author.avatar ? author.avatar : placeholder}
                 alt={author.name}
                 onError={onImageError}
               />
