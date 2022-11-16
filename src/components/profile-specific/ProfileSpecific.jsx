@@ -10,10 +10,10 @@ import Posts from "./PostsList";
 import ProfileCard from "../profiles/ProfileCard";
 import { AlertInfo } from "../common/AlertInfo";
 import FollowersList from "./FollowersList";
-import placholderImage from "../../assets/profile-placeholder.png";
+import placeholderImage from "../../assets/profile-placeholder.png";
 
 export default function ProfileSpecific() {
-  const placeholder = placholderImage;
+  const placeholder = placeholderImage;
   const onImageError = (event) => {
     event.target.onerror = null;
     event.target.src = placeholder;
@@ -22,7 +22,6 @@ export default function ProfileSpecific() {
   let { id } = useParams();
   const url = "social/profiles/" + id + "?_following=true&_followers=true";
   const [profile, setProfile] = useState([]);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const http = useAxios();
