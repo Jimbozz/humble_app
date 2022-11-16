@@ -2,8 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../hooks/useAxios";
+import placeholderImage from "../assets/profile-placeholder.png";
+import AlertError from "../components/common/AlertError";
 
 export default function UserCard() {
+  const placeholder = placeholderImage;
+  const onImageError = (event) => {
+    event.target.onerror = null;
+    event.target.src = placeholder;
+  };
+
   //Get user name from local storage
   const userProfile = useContext(AuthContext);
   const profile = userProfile[0];
@@ -31,7 +39,11 @@ export default function UserCard() {
   }, []);
 
   if (error) {
-    return <div>Error: An error occurred here</div>;
+    return (
+      <AlertError>
+        There was an error. Please reload the page or try again later
+      </AlertError>
+    );
   }
 
   return (
@@ -39,9 +51,22 @@ export default function UserCard() {
       <Card bg="dark">
         {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
         <Card.Body className="d-flex align-items-center flex-column user-body">
-          <div className="user-body__image-banner"></div>
-          <div className="user-body__image-avatar"></div>
-          {/* <Card.Img src="holder.js/100px180" /> */}
+          <div className="user-body__banner">
+            <Card.Img
+              className="user-body__banner-item"
+              src={user.banner ? user.banner : placeholder}
+              alt={user.name}
+              onError={onImageError}
+            />
+          </div>
+          <div className="user-body__avatar">
+            <Card.Img
+              className="user-body__avatar-item"
+              src={user.avatar ? user.avatar : placeholder}
+              alt={user.name}
+              onError={onImageError}
+            />
+          </div>
           <Card.Title>{user.name}</Card.Title>
           <Card.Text className="user-body__email">{user.email}</Card.Text>
           <div className="d-flex gap-3 card-body__data">
