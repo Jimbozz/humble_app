@@ -1,22 +1,33 @@
 .user-body {
   position: relative;
-  &__image {
-    &-banner {
-      background-color: $color-grey-vary-dark;
-      height: 128px;
-      width: 100%;
-      border-radius: 4px 4px 0px 0px;
-      margin-bottom: 3rem;
-    }
 
-    &-avatar {
-      position: absolute;
-      top: 110px;
-      background-color: $color-grey-vary-dark;
-      border: 3px solid $color-gray-dark;
-      height: 64px;
-      width: 64px;
-      border-radius: $border-radius;
+  &__banner {
+    background-color: $color-grey-vary-dark;
+    height: 128px;
+    width: 100%;
+    border-radius: 4px 4px 0px 0px;
+    margin-bottom: 3rem;
+
+    &-item {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    top: 110px;
+    background-color: $color-grey-vary-dark;
+    border: 3px solid $color-gray-dark;
+    height: 64px;
+    width: 64px;
+    border-radius: $border-radius;
+
+    &-item {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
   }
 
