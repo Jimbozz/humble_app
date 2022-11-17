@@ -4,8 +4,12 @@ import { AiFillHome } from "react-icons/ai";
 import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
 import CreatePostButton from "./CreatePost";
+import { useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
-function MainNav() {
+export default function MainNav() {
+  const [auth] = useContext(AuthContext);
+  const userName = auth.name;
   let activeStyle = {
     color: "#defe65",
   };
@@ -16,14 +20,14 @@ function MainNav() {
         <img src={require("../assets/humble-logo.png")} alt="humble logo" />
       </div>
       <div className="sidebar-content">
-        <ul className="sidebar-content__list">
+        <div className="sidebar-content__list">
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/"
             className="sidebar-content__list--item nav-link"
             end>
             <AiFillHome />
-            Home
+            <span className="sidebar-content__list--name">Home</span>
           </NavLink>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
@@ -31,24 +35,23 @@ function MainNav() {
             className="sidebar-content__list--item nav-link"
             end>
             <BsPeopleFill />
-            Profiles
+            <span className="sidebar-content__list--name">Profiles</span>
           </NavLink>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/profile"
+            to={`profile/${userName}`}
             className="sidebar-content__list--item nav-link"
             end>
             <BsFillPersonFill />
-            Profile
+            <span className="sidebar-content__list--name">Profile</span>
           </NavLink>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
             to="/login"
             className="sidebar-content__list--item sidebar-content__list--item-none nav-link">
             <BiLogOut />
-            Logout
           </NavLink>
-        </ul>
+        </div>
         <CreatePostButton />
         <hr className="sidebar-content__line"></hr>
         <ButtonGroup justified="true" className="sidebar-content__dropdown">
@@ -64,5 +67,3 @@ function MainNav() {
     </aside>
   );
 }
-
-export default MainNav;
