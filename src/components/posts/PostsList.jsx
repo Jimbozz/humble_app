@@ -52,7 +52,7 @@ export default function PostsList() {
             <Col key={id}>
               <PostCard
                 key={id}
-                id={id}
+                id={author}
                 title={title}
                 body={body}
                 author={author}
