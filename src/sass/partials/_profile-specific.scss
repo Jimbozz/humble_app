@@ -18,9 +18,20 @@
     }
   }
 
+  &__edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px;
+
+    &-icon {
+      font-size: 1.3rem;
+    }
+  }
+
   &__avatar {
     position: absolute;
-    bottom: 64px;
+    bottom: 48px;
     width: 5rem;
     height: 5rem;
     border-radius: $border-radius;
@@ -35,7 +46,7 @@
   }
 
   &__email {
-    margin: 3rem 0px 2rem 0px;
+    margin: 3rem 0px 1rem 0px;
     color: $color-gray-medium;
   }
 
@@ -56,24 +67,24 @@
   &__number {
     margin-right: 10px;
     font-size: 1.3rem;
+    font-weight: 600;
   }
 }
 
 //Tabbed section
-//May need to change styles as it is effecting the nav link components
 
-.nav-tabs {
+.tab-container {
   border-bottom: 1px solid $color-gray-line;
-}
 
-.nav-link:hover {
-  background-color: $color-gray-line;
-}
+  .nav-link:hover {
+    background-color: $color-gray-line;
+  }
 
-.nav-tabs .nav-link.active {
-  text-decoration: underline $color-green;
+  .nav-link.active {
+    text-decoration: underline $color-green;
 
-  text-underline-position: under;
-  /* line-height: 10px; */
-  text-underline-offset: 9px;
+    text-underline-position: under;
+    /* line-height: 10px; */
+    text-underline-offset: 9px;
+  }
 }
