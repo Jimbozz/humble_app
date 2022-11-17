@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Dropdown, Modal, Navbar } from "react-bootstrap";
 import { BsThreeDots } from "react-icons/bs";
 
-function OptionsButton() {
+export default function OptionsButton() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,5 +39,3 @@ function OptionsButton() {
     </>
   );
 }
-
-export default OptionsButton;
