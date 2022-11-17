@@ -7,16 +7,19 @@ import { BiComment } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import OptionsButton from "./OptionsButton";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 export default function PostCard({
   title,
   body,
-  id,
   author,
   created,
   reactions,
   comments,
 }) {
+  const [auth] = useContext(AuthContext);
+
   const placeholder = placeholderImage;
 
   const onImageError = (event) => {
@@ -26,7 +29,7 @@ export default function PostCard({
 
   return (
     // <Link to={`post/${id}`} key={id}></Link>
-    <Card bg="dark" className="h-100 card-width" id={id}>
+    <Card bg="dark" className="card-width" id={author.name}>
       <Card.Body>
         <div className="card-profile mb-3">
           <div className="card-profile-top">
@@ -49,7 +52,7 @@ export default function PostCard({
               </small>
             </div>
           </div>
-          <OptionsButton />
+          {auth.name === author.name ? <OptionsButton /> : null}
         </div>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{body}</Card.Text>
@@ -70,7 +73,6 @@ export default function PostCard({
 }
 
 PostCard.propTypes = {
-  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string,
   created: PropTypes.string,
