@@ -5,12 +5,13 @@ import Layout from "../../layout/Layout";
 import useAxios from "../../hooks/useAxios";
 import Loading from "../common/Loading";
 import AlertError from "../common/AlertError";
-import { Col, Container, Image, Row, Tab, Tabs } from "react-bootstrap";
+import { Button, Col, Container, Image, Row, Tab, Tabs } from "react-bootstrap";
 import Posts from "./PostsList";
 import ProfileCard from "../profiles/ProfileCard";
 import { AlertInfo } from "../common/AlertInfo";
 import FollowersList from "./FollowersList";
 import placeholderImage from "../../assets/profile-placeholder.png";
+import EditProfileButton from "./EditProfileButton";
 
 export default function ProfileSpecific() {
   const placeholder = placeholderImage;
@@ -67,6 +68,7 @@ export default function ProfileSpecific() {
             onError={onImageError}
           />
         </div>
+        <EditProfileButton />
         <div className="user-info__avatar">
           <Image
             className="user-info__avatar-image"
@@ -94,13 +96,13 @@ export default function ProfileSpecific() {
       <Tabs
         defaultActiveKey="posts"
         id="justify-tab-example"
-        className="mb-3"
+        className="mb-3 tab-container"
         justify>
-        <Tab eventKey="posts" title="Posts" className="tab-link">
+        <Tab eventKey="posts" title="Posts" className="tab-container__link">
           <Posts />
         </Tab>
-        <Tab eventKey="followers" title="Followers">
-          <Row xs={1} className="g-4">
+        <Tab eventKey="followers" title="Followers" className="tab.link">
+          <Row xs={1} className="g-4 mb-5">
             {hasFollowers ? (
               profile.followers.map((item) => {
                 const { name, avatar } = item;
@@ -119,7 +121,7 @@ export default function ProfileSpecific() {
           {/* <FollowersList /> */}
         </Tab>
         <Tab eventKey="following" title="Following">
-          <Row xs={1} className="g-4">
+          <Row xs={1} className="g-4 mb-5">
             {isFollowing ? (
               profile.following.map((item) => {
                 const { name, avatar } = item;
