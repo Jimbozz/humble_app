@@ -7,7 +7,6 @@ import { AuthProvider } from "./context/AuthContext";
 import RegisterPage from "./components/register/RegisterPage";
 import LoginPage from "./components/login/LoginPage";
 
-import ProfileSpecific from "./components/profile-specific/ProfileSpecific";
 import ProfileSpecificPage from "./components/profile-specific/ProfileSpecificPage";
 
 function App() {
@@ -16,12 +15,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/register" element={<RegisterPage />} />
-        <Route exact path="/profile/:id" element={<ProfileSpecificPage />} />
-        <Route
-          exact
-          path="profiles/profile/:id"
-          element={<ProfileSpecificPage />}
-        />
+        <Route path="/profile/:id" element={<ProfileSpecificPage />} />
+        <Route path="profiles/profile/:id" element={<ProfileSpecificPage />} />
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/profiles" element={<ProfilesPage />} />
         {/* <Route exact path="/create" element={<CreatePost />} /> */}
