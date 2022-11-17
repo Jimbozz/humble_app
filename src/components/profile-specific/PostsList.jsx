@@ -49,7 +49,7 @@ function Posts() {
   }
 
   return (
-    <Row xs={1} className="g-4">
+    <Row xs={1} className="g-4 mb-5">
       {posts.map((post) => {
         const { id, title, body, author, created, reactions, comments } = post;
         return (
