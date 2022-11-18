@@ -13,8 +13,9 @@ import AuthContext from "../../context/AuthContext";
 export default function PostCard({
   title,
   body,
-  author,
   created,
+  media,
+  author,
   reactions,
   comments,
 }) {
@@ -24,7 +25,8 @@ export default function PostCard({
 
   const onImageError = (event) => {
     event.target.onerror = null;
-    event.target.src = placeholder;
+    // event.target.src = placeholder;
+    event.target.style.display = "none";
   };
 
   return (
@@ -42,7 +44,7 @@ export default function PostCard({
               />
             </div>
             <div className="card-profile-top__content">
-              <Link to={`profile/${author.name}`}>
+              <Link to={`profiles/${author.name}`}>
                 <div className="card-profile-top__content--heading">
                   {author.name}
                 </div>
@@ -55,7 +57,12 @@ export default function PostCard({
           {auth.name === author.name ? <OptionsButton /> : null}
         </div>
         <Card.Title>{title}</Card.Title>
+
         <Card.Text>{body}</Card.Text>
+        <Card.Img
+          src={media ? media : null}
+          onError={(e) => (e.target.style.display = "none")}
+        />
         <hr className="card-line"></hr>
         <div className="d-flex gap-3">
           <Button variant="heart" className="d-flex align-items-center">
@@ -76,6 +83,7 @@ PostCard.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string,
   created: PropTypes.string,
+  media: PropTypes.string,
   author: PropTypes.shape({
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string,
