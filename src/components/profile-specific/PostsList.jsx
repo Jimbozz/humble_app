@@ -29,6 +29,7 @@ function Posts() {
         setLoading(false);
       }
     }
+
     getPosts();
   }, []);
 
@@ -51,7 +52,8 @@ function Posts() {
   return (
     <Row xs={1} className="g-4 mb-5">
       {posts.map((post) => {
-        const { id, title, body, author, created, reactions, comments } = post;
+        const { id, title, body, author, created, reactions, comments, media } =
+          post;
         return (
           <Col key={id}>
             <PostCard
@@ -63,6 +65,7 @@ function Posts() {
               created={created}
               reactions={reactions}
               comments={comments}
+              media={media}
             />
           </Col>
         );
