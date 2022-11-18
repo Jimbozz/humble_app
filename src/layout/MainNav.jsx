@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
@@ -9,6 +9,7 @@ import AuthContext from "../context/AuthContext";
 
 export default function MainNav() {
   const [auth] = useContext(AuthContext);
+
   const userName = auth.name;
   let activeStyle = {
     color: "#defe65",
@@ -39,7 +40,7 @@ export default function MainNav() {
           </NavLink>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to={`profile/${userName}`}
+            to={`profiles/${userName}`}
             className="sidebar-content__list--item nav-link"
             end>
             <BsFillPersonFill />
