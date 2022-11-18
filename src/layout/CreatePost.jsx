@@ -15,11 +15,10 @@ const schema = yup.object().shape({
     .required("Must be a minimum of 2 characters")
     .min(2, "Title should be at least 2 characters"),
   body: yup.string(),
-  tags: yup.array().nullable(),
+  // tags: yup.array(),
   media: yup
     .string()
-    .url("Not a valid URL, make sure image is publicly hosted.")
-    .nullable(),
+    .url("Not a valid URL, make sure image is publicly hosted."),
 });
 
 export default function CreatePost() {
@@ -96,7 +95,7 @@ export default function CreatePost() {
                 )}
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="postTags">
+              {/* <Form.Group className="mb-3" controlId="postTags">
                 <Form.Label>Tags (optional)</Form.Label>
                 <Form.Control
                   placeholder="Tags"
@@ -109,7 +108,7 @@ export default function CreatePost() {
                 <Form.Text className="text-muted">
                   Separate tags with a comma.
                 </Form.Text>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group className="mb-3" controlId="postMedia">
                 <Form.Label>Image URL (optional)</Form.Label>
