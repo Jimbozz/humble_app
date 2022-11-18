@@ -24,7 +24,7 @@ export default function ProfileCard({ name, avatar }) {
               onError={onImageError}
             />
           </div>
-          <Link to={`profile/${name}`}>
+          <Link to={`${name}`}>
             <Card.Title className="profile-card__content-name">
               {name}
             </Card.Title>
