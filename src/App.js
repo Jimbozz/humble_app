@@ -15,22 +15,15 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/register" element={<RegisterPage />} />
-        <Route path="/profile/:id" element={<ProfileSpecificPage />} />
-        <Route path="profiles/profile/:id" element={<ProfileSpecificPage />} />
+        {/* <Route path="/profile/:id" element={<ProfileSpecificPage />} /> */}
+        {/* <Route path="profiles/profile/:id" element={<ProfileSpecificPage />} /> */}
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/profiles" element={<ProfilesPage />} />
-        {/* <Route exact path="/create" element={<CreatePost />} /> */}
-      </Routes>
-      {/* <Routes location={background || location}>
-        <Route path="/" element={<HomePage />}>
-          <Route path="modal" element={<OptionsButton />} />
+        <Route path="profiles">
+          <Route path=":id" element={<ProfileSpecificPage />} />
+          <Route path=":name" element={<ProfileSpecificPage />} />
         </Route>
       </Routes>
-      {background && (
-        <Routes>
-          <Route path="modal" element={<OptionsButton />} />
-        </Routes>
-      )} */}
     </AuthProvider>
   );
 }
