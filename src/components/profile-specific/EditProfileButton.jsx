@@ -1,13 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import React, { useContext, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Alert, Button, Form, Modal, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { BiEdit } from "react-icons/bi";
 import useAxios from "../../hooks/useAxios";
-import AuthContext from "../../context/AuthContext";
+
 import FormError from "../common/FormError";
 import FormWarning from "../common/FormWarning";
+import { useParams } from "react-router-dom";
 
 const schema = yup.object().shape({
   banner: yup
@@ -19,16 +20,21 @@ const schema = yup.object().shape({
 });
 
 export default function EditProfileButton() {
-  const [auth] = useContext(AuthContext);
-  const userName = auth.name;
-  const url = "social/profiles/" + userName + "/media";
+  const { id } = useParams();
+  const url = "social/profiles/" + id + "/media";
+  const userUrl = "social/profiles/" + id;
+  const http = useAxios();
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [submitting, setSubmitting] = useState(false);
-  const [createError, setCreateError] = useState(false);
-  const http = useAxios();
+  const [formData, setFormData] = useState(null);
+  const [updated, setUpdated] = useState(false);
+  const [fetchingData, setFetchingData] = useState(true);
+  const [updateData, setUpdateData] = useState(false);
+  const [fetchError, setFetchError] = useState(null);
+  const [updateError, setUpdateError] = useState(null);
 
   const {
     register,
@@ -38,21 +44,51 @@ export default function EditProfileButton() {
     resolver: yupResolver(schema),
   });
 
+  useEffect(
+    () => {
+      async function getData() {
+        try {
+          const response = await http.get(userUrl);
+          console.log(response.data);
+          setFormData(response.data);
+        } catch (error) {
+          console.log(error);
+          setFetchError(error.toString());
+        } finally {
+          setFetchingData(false);
+        }
+      }
+      getData();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   async function onSubmit(data) {
-    setSubmitting(true);
-    setCreateError(null);
-    console.log(data);
+    setUpdateData(true);
+    setUpdateError(null);
+    setUpdated(false);
+
     try {
       const response = await http.put(url, data);
       console.log(response.data);
-      setShow(false);
+      setUpdated(true);
+      // setShow(false);
     } catch (error) {
       console.log(error);
-      setCreateError(error.toString());
+      setUpdateError(error.toString());
     } finally {
-      setSubmitting(false);
+      setUpdateData(false);
     }
   }
+
+  if (fetchingData)
+    return (
+      <Spinner
+        className="loading-icon"
+        animation="border"
+        role="status"></Spinner>
+    );
 
   return (
     <>
@@ -66,12 +102,19 @@ export default function EditProfileButton() {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            {createError && <FormError>{createError}</FormError>}
-            <fieldset disabled={submitting}>
+            {fetchError && (
+              <FormError>There was an error updating your profile.</FormError>
+            )}
+            {updated && (
+              <Alert variant="success">Your profile has been updated.</Alert>
+            )}
+            {updateError && <FormError>{updateError}</FormError>}
+            <fieldset disabled={updateData}>
               <Form.Group className="mb-3" controlId="userBanner">
                 <Form.Label>Banner URL (optional)</Form.Label>
                 <Form.Control
                   type="url"
+                  defaultValue={formData.banner}
                   placeholder="https://example.com"
                   aria-describedby="userBanner"
                   {...register("banner")}
@@ -84,6 +127,7 @@ export default function EditProfileButton() {
                 <Form.Label>Avatar URL (optional)</Form.Label>
                 <Form.Control
                   type="url"
+                  defaultValue={formData.avatar}
                   placeholder="https://example.com"
                   aria-describedby="userAvatar"
                   {...register("avatar")}
@@ -94,7 +138,7 @@ export default function EditProfileButton() {
               </Form.Group>
               <div className="form-create-button">
                 <Button variant="primary" type="submit">
-                  {submitting ? "updating profile" : "Update"}
+                  {updateData ? "updating profile" : "Update"}
                 </Button>
               </div>
             </fieldset>
