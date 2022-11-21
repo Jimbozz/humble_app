@@ -9,9 +9,11 @@ import OptionsButton from "./OptionsButton";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 export default function PostCard({
   title,
+  id,
   body,
   created,
   media,
@@ -31,7 +33,7 @@ export default function PostCard({
 
   return (
     // <Link to={`post/${id}`} key={id}></Link>
-    <Card bg="dark" className="card-width" id={author.name}>
+    <Card bg="dark" className="card-width" id={id}>
       <Card.Body>
         <div className="card-profile mb-3">
           <div className="card-profile-top">
@@ -81,6 +83,7 @@ export default function PostCard({
 
 PostCard.propTypes = {
   title: PropTypes.string.isRequired,
+  id: PropTypes.number,
   body: PropTypes.string,
   created: PropTypes.string,
   media: PropTypes.string,
