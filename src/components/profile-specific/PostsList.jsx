@@ -18,20 +18,25 @@ function Posts() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
-  useEffect(() => {
-    async function getPosts() {
-      try {
-        const response = await http.get(url);
-        setPosts(response.data);
-      } catch (error) {
-        setError(error.toString());
-      } finally {
-        setLoading(false);
+  useEffect(
+    () => {
+      async function getPosts() {
+        try {
+          const response = await http.get(url);
+          setPosts(response.data);
+          console.log(response);
+        } catch (error) {
+          setError(error.toString());
+        } finally {
+          setLoading(false);
+        }
       }
-    }
 
-    getPosts();
-  }, []);
+      getPosts();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   if (loading) {
     return <Loading />;
