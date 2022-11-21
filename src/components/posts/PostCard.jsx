@@ -56,7 +56,7 @@ export default function PostCard({
               </small>
             </div>
           </div>
-          {auth.name === author.name ? <OptionsButton /> : null}
+          {auth.name === author.name ? <OptionsButton id={id} /> : null}
         </div>
         <Card.Title>{title}</Card.Title>
 
