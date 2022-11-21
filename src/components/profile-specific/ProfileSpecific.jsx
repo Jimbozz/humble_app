@@ -27,20 +27,24 @@ export default function ProfileSpecific() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
-  useEffect(() => {
-    async function getProfile() {
-      try {
-        const response = await http.get(url);
-        console.log("response", response.data);
-        setProfile(response.data);
-      } catch (error) {
-        setError(error.toString());
-      } finally {
-        setLoading(false);
+  useEffect(
+    () => {
+      async function getProfile() {
+        try {
+          const response = await http.get(url);
+          console.log("response", response.data);
+          setProfile(response.data);
+        } catch (error) {
+          setError(error.toString());
+        } finally {
+          setLoading(false);
+        }
       }
-    }
-    getProfile();
-  }, []);
+      getProfile();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   if (loading) {
     return <Loading />;
