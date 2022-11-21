@@ -24,7 +24,6 @@ function Posts() {
         try {
           const response = await http.get(url);
           setPosts(response.data);
-          console.log(response);
         } catch (error) {
           setError(error.toString());
         } finally {
