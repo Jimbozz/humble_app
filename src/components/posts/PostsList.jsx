@@ -11,23 +11,27 @@ export default function PostsList() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
-  useEffect(() => {
-    async function getPosts() {
-      try {
-        const response = await http.get(
-          "social/posts/?_author=true&_comments=true&_reactions=true"
-        );
-        console.log("response", response.data);
-        setPosts(response.data);
-      } catch (error) {
-        console.log(error);
-        setError(error.toString());
-      } finally {
-        setLoading(false);
+  useEffect(
+    () => {
+      async function getPosts() {
+        try {
+          const response = await http.get(
+            "social/posts/?_author=true&_comments=true&_reactions=true"
+          );
+          console.log("response", response.data);
+          setPosts(response.data);
+        } catch (error) {
+          console.log(error);
+          setError(error.toString());
+        } finally {
+          setLoading(false);
+        }
       }
-    }
-    getPosts();
-  }, []);
+      getPosts();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   if (loading) {
     return <Loading />;
@@ -60,7 +64,7 @@ export default function PostsList() {
             <Col key={id}>
               <PostCard
                 key={id}
-                id={author}
+                id={id}
                 title={title}
                 body={body}
                 author={author}
