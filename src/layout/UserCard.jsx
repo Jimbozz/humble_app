@@ -24,19 +24,23 @@ export default function UserCard() {
   const http = useAxios();
   const url = "social/profiles/" + userName;
 
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const response = await http.get(url);
-        console.log("response", response.data);
-        setUser(response.data);
-      } catch (error) {
-        console.log(error);
-        setError(error.toString());
+  useEffect(
+    () => {
+      async function getUser() {
+        try {
+          const response = await http.get(url);
+          console.log("response", response.data);
+          setUser(response.data);
+        } catch (error) {
+          console.log(error);
+          setError(error.toString());
+        }
       }
-    }
-    getUser();
-  }, []);
+      getUser();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   if (error) {
     return (
