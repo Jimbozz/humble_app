@@ -8,6 +8,7 @@ import RegisterPage from "./components/register/RegisterPage";
 import LoginPage from "./components/login/LoginPage";
 
 import ProfileSpecificPage from "./components/profile-specific/ProfileSpecificPage";
+import PostSpecificPage from "./components/post-specific/PostSpecificPage";
 
 function App() {
   return (
@@ -16,7 +17,10 @@ function App() {
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/register" element={<RegisterPage />} />
         {/* <Route path="/profile/:id" element={<ProfileSpecificPage />} /> */}
-        {/* <Route path="profiles/profile/:id" element={<ProfileSpecificPage />} /> */}
+        <Route path="post">
+          <Route path=":id/:title" element={<PostSpecificPage />} />
+        </Route>
+        <Route path="post:id" element={<PostSpecificPage />} />
         <Route exact path="/login" element={<LoginPage />} />
         <Route exact path="/profiles" element={<ProfilesPage />} />
         <Route path="profiles">
