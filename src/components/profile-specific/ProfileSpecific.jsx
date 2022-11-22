@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import Loading from "../common/Loading";
@@ -9,8 +9,10 @@ import ProfileCard from "../profiles/ProfileCard";
 import { AlertInfo } from "../common/AlertInfo";
 import placeholderImage from "../../assets/profile-placeholder.png";
 import EditProfileButton from "./EditProfileButton";
+import AuthContext from "../../context/AuthContext";
 
 export default function ProfileSpecific() {
+  const [auth] = useContext(AuthContext);
   const placeholder = placeholderImage;
   const onImageError = (event) => {
     event.target.onerror = null;
@@ -69,7 +71,7 @@ export default function ProfileSpecific() {
             onError={onImageError}
           />
         </div>
-        <EditProfileButton />
+        {auth.name === profile.name ? <EditProfileButton /> : null}
         <div className="user-info__avatar">
           <Image
             className="user-info__avatar-image"
