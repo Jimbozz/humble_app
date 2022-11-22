@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Heading from "../common/Heading";
-import Layout from "../../layout/Layout";
 import useAxios from "../../hooks/useAxios";
 import Loading from "../common/Loading";
 import AlertError from "../common/AlertError";
@@ -9,7 +7,6 @@ import { Button, Col, Container, Image, Row, Tab, Tabs } from "react-bootstrap";
 import Posts from "./PostsList";
 import ProfileCard from "../profiles/ProfileCard";
 import { AlertInfo } from "../common/AlertInfo";
-import FollowersList from "./FollowersList";
 import placeholderImage from "../../assets/profile-placeholder.png";
 import EditProfileButton from "./EditProfileButton";
 
