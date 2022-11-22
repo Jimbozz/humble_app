@@ -32,7 +32,6 @@ export default function PostCard({
   };
 
   return (
-    // <Link to={`post/${id}`} key={id}></Link>
     <Card bg="dark" className="card-width" id={id}>
       <Card.Body>
         <div className="card-profile mb-3">
@@ -46,7 +45,7 @@ export default function PostCard({
               />
             </div>
             <div className="card-profile-top__content">
-              <Link to={`profiles/${author.name}`}>
+              <Link className="card-link" to={`/profiles/${author.name}`}>
                 <div className="card-profile-top__content--heading">
                   {author.name}
                 </div>
@@ -58,13 +57,15 @@ export default function PostCard({
           </div>
           {auth.name === author.name ? <OptionsButton id={id} /> : null}
         </div>
-        <Card.Title>{title}</Card.Title>
+        <Link className="card-link" to={`/post/${id}/${title}`} key={id}>
+          <Card.Title>{title}</Card.Title>
 
-        <Card.Text>{body}</Card.Text>
-        <Card.Img
-          src={media ? media : null}
-          onError={(e) => (e.target.style.display = "none")}
-        />
+          <Card.Text>{body}</Card.Text>
+          <Card.Img
+            src={media ? media : null}
+            onError={(e) => (e.target.style.display = "none")}
+          />
+        </Link>
         <hr className="card-line"></hr>
         <div className="d-flex gap-3">
           <Button variant="heart" className="d-flex align-items-center">
