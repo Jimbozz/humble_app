@@ -8,13 +8,14 @@
   &__banner {
     background-color: $color-gray-dark;
     border-radius: 4px 4px 0px 0px;
-    height: 10rem;
+    height: 15rem;
     width: 100%;
 
     &-image {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: inherit;
     }
   }
 
