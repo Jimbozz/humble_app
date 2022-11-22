@@ -5,11 +5,12 @@ import placeholderImage from "../../assets/profile-placeholder.png";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
-import OptionsButton from "./OptionsButton";
+import EditPostButton from "./EditPostButton";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import { propTypes } from "react-bootstrap/esm/Image";
+import CommentButton from "./CommentButton";
 
 export default function PostCard({
   title,
@@ -55,7 +56,7 @@ export default function PostCard({
               </small>
             </div>
           </div>
-          {auth.name === author.name ? <OptionsButton id={id} /> : null}
+          {auth.name === author.name ? <EditPostButton id={id} /> : null}
         </div>
         <Link className="card-link" to={`/post/${id}/${title}`} key={id}>
           <Card.Title>{title}</Card.Title>
@@ -72,10 +73,17 @@ export default function PostCard({
             <AiOutlineHeart className="btn-heart__icon" />
             <small>{reactions.length}</small>
           </Button>
-          <Button variant="comment" className="d-flex align-items-center">
-            <BiComment className="btn-comment__icon" />
-            <small>{comments.length}</small>
-          </Button>
+          <CommentButton
+            comments={comments}
+            id={id}
+            key={id}
+            title={title}
+            body={body}
+            author={author}
+            created={created}
+            reactions={reactions}
+            media={media}
+          />
         </div>
       </Card.Body>
     </Card>
