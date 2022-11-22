@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import FormWarning from "../components/common/FormWarning";
 import FormError from "../components/common/FormError";
+import { BsPlusLg } from "react-icons/bs";
 
 const url = "social/posts";
 const schema = yup.object().shape({
@@ -59,7 +60,8 @@ export default function CreatePost() {
         variant="primary"
         className=" sidebar-content__button"
         onClick={handleShow}>
-        Create post
+        <BsPlusLg />
+        <div>Create post</div>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
