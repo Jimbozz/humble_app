@@ -1,4 +1,7 @@
 .card {
+  &-link:hover {
+    color: $color-gray-light;
+  }
   .card-profile {
     display: flex;
     gap: 1rem;
@@ -36,6 +39,11 @@
       }
     }
   }
+
+  // &-media {
+  //   height: 20rem;
+  //   object-fit: cover;
+  // }
 
   &-line {
     color: $color-gray-line;
