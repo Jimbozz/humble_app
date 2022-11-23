@@ -55,6 +55,10 @@ $nav-tabs-border-width: none;
 $nav-tabs-link-active-color: white;
 $nav-link-color: $color-gray-medium;
 $nav-link-hover-color: none;
+$popover-bg: black;
+$popover-border-color: $color-grey-vary-dark;
+$popover-body-padding-x: 0.5rem;
+$popover-body-padding-y: 0.5rem;
 // $input-color: $very-dark-blue;
 
 @import "~bootstrap/scss/bootstrap";
