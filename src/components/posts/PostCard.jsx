@@ -1,16 +1,14 @@
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 import placeholderImage from "../../assets/profile-placeholder.png";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BiComment } from "react-icons/bi";
-import { BsThreeDots } from "react-icons/bs";
 import EditPostButton from "./EditPostButton";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-import { propTypes } from "react-bootstrap/esm/Image";
 import CommentButton from "./CommentButton";
+import ReactButton from "./ReactButton";
 
 export default function PostCard({
   title,
@@ -21,6 +19,7 @@ export default function PostCard({
   author,
   reactions,
   comments,
+  symbol,
 }) {
   const [auth] = useContext(AuthContext);
 
@@ -31,6 +30,8 @@ export default function PostCard({
     // event.target.src = placeholder;
     event.target.style.display = "none";
   };
+
+  const hasReactions = reactions.length;
 
   return (
     <Card bg="dark" className="card-width" id={id}>
@@ -68,11 +69,15 @@ export default function PostCard({
           />
         </Link>
         <hr className="card-line"></hr>
+        <div className="card-emoji">
+          {hasReactions
+            ? reactions.map((item) => {
+                return <div key={item.symbol}>{item.symbol}</div>;
+              })
+            : null}
+        </div>
         <div className="d-flex gap-3">
-          <Button variant="heart" className="d-flex align-items-center">
-            <AiOutlineHeart className="btn-heart__icon" />
-            <small>{reactions.length}</small>
-          </Button>
+          <ReactButton reactions={reactions.length} id={id} symbol={symbol} />
           <CommentButton
             comments={comments}
             id={id}
