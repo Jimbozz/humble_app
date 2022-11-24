@@ -20,6 +20,7 @@ export default function PostCard({
   reactions,
   comments,
   symbol,
+  getPosts,
 }) {
   const [auth] = useContext(AuthContext);
 
@@ -57,11 +58,12 @@ export default function PostCard({
               </small>
             </div>
           </div>
-          {auth.name === author.name ? <EditPostButton id={id} /> : null}
+          {auth.name === author.name ? (
+            <EditPostButton id={id} getPosts={getPosts} />
+          ) : null}
         </div>
         <Link className="card-link" to={`/post/${id}/${title}`} key={id}>
           <Card.Title>{title}</Card.Title>
-
           <Card.Text>{body}</Card.Text>
           <Card.Img
             src={media ? media : null}
@@ -77,7 +79,13 @@ export default function PostCard({
             : null}
         </div>
         <div className="d-flex gap-3">
-          <ReactButton reactions={reactions.length} id={id} symbol={symbol} />
+          <ReactButton
+            reactions={reactions.length}
+            id={id}
+            symbol={symbol}
+            getPosts={getPosts}
+          />
+
           <CommentButton
             comments={comments}
             id={id}
