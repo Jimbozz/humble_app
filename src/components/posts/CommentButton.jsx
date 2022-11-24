@@ -25,6 +25,7 @@ export default function CommentButton({
   author,
   created,
   media,
+  getPosts,
 }) {
   const [submitting, setSubmitting] = useState(false);
   const [createError, setCreateError] = useState(null);
@@ -54,6 +55,7 @@ export default function CommentButton({
       const response = await http.post(url, data);
       console.log(response.data);
       setUpdated(true);
+      getPosts();
     } catch (error) {
       console.log(error);
       setCreateError(error.toString());
