@@ -53,7 +53,6 @@ export default function EditPostButton({ id }) {
   const http = useAxios();
 
   const url = "social/posts/" + id;
-  console.log(id);
 
   useEffect(
     () => {
@@ -91,6 +90,7 @@ export default function EditPostButton({ id }) {
       setUpdatingPage(false);
     }
   }
+
   if (fetchingPage)
     return (
       <Spinner
