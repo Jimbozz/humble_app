@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
@@ -18,24 +18,43 @@ function Posts() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
+  const getPosts = useCallback(async () => {
+    try {
+      const response = await http.get(url);
+      setPosts(response.data);
+    } catch (error) {
+      setError(error.toString());
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(
     () => {
-      async function getPosts() {
-        try {
-          const response = await http.get(url);
-          setPosts(response.data);
-        } catch (error) {
-          setError(error.toString());
-        } finally {
-          setLoading(false);
-        }
-      }
-
       getPosts();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+
+  // useEffect(
+  //   () => {
+  //     async function getPosts() {
+  //       try {
+  //         const response = await http.get(url);
+  //         setPosts(response.data);
+  //       } catch (error) {
+  //         setError(error.toString());
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     }
+
+  //     getPosts();
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   []
+  // );
 
   if (loading) {
     return <Loading />;
@@ -70,6 +89,7 @@ function Posts() {
               reactions={reactions}
               comments={comments}
               media={media}
+              getPosts={getPosts}
             />
           </Col>
         );
