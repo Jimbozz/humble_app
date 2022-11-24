@@ -96,6 +96,7 @@ export default function PostCard({
             created={created}
             reactions={reactions}
             media={media}
+            getPosts={getPosts}
           />
         </div>
       </Card.Body>
