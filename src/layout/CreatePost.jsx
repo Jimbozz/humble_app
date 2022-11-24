@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
@@ -42,7 +42,6 @@ export default function CreatePost() {
   async function onSubmit(data) {
     setSubmitting(true);
     setCreateError(null);
-    console.log(data);
     try {
       const response = await http.post(url, data);
       console.log(response.data);
