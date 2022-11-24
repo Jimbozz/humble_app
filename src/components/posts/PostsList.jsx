@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 import AlertError from "../common/AlertError";
@@ -11,27 +11,49 @@ export default function PostsList() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
+  const getPosts = useCallback(async () => {
+    try {
+      const response = await http.get(
+        "social/posts/?_author=true&_comments=true&_reactions=true"
+      );
+      setPosts(response.data);
+    } catch (error) {
+      console.log(error);
+      setError(error.toString());
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(
     () => {
-      async function getPosts() {
-        try {
-          const response = await http.get(
-            "social/posts/?_author=true&_comments=true&_reactions=true"
-          );
-          console.log("response", response.data);
-          setPosts(response.data);
-        } catch (error) {
-          console.log(error);
-          setError(error.toString());
-        } finally {
-          setLoading(false);
-        }
-      }
       getPosts();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+
+  // useEffect(
+  //   () => {
+  //     async function getPosts() {
+  //       try {
+  //         const response = await http.get(
+  //           "social/posts/?_author=true&_comments=true&_reactions=true"
+  //         );
+  //         console.log("response", response.data);
+  //         setPosts(response.data);
+  //       } catch (error) {
+  //         console.log(error);
+  //         setError(error.toString());
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     }
+  //     getPosts();
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   []
+  // );
 
   if (loading) {
     return <Loading />;
@@ -72,6 +94,7 @@ export default function PostsList() {
                 reactions={reactions}
                 comments={comments}
                 media={media}
+                getPosts={getPosts}
               />
             </Col>
           );
