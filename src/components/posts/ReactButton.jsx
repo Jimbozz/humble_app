@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { AiOutlineHeart } from "react-icons/ai";
 import useAxios from "../../hooks/useAxios";
 
-export default function ReactButton({ reactions, id, symbol }) {
+export default function ReactButton({ reactions, id, getPosts }) {
   const http = useAxios();
 
   const Emoji = (props) => (
@@ -18,19 +18,16 @@ export default function ReactButton({ reactions, id, symbol }) {
     </span>
   );
 
-  // const handleClick = (event, param) => {
-  //   console.log(event.target.innerText);
-  //   console.log(param);
-  // };
-
   async function addReaction(event) {
     const emojiName = event.target.innerText;
     const url = "social/posts/" + id + "/react/" + emojiName;
+
     console.log(url);
 
     try {
       const response = await http.put(url);
       console.log(response.data);
+      getPosts();
     } catch (error) {
       console.log(error);
     }
