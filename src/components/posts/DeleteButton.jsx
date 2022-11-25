@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 
-export default function DeleteButton({ id }) {
+export default function DeleteButton({ id, getPosts }) {
   const [error, setError] = useState(null);
   const http = useAxios();
   //  const navigate = useNavigate();
@@ -17,6 +17,7 @@ export default function DeleteButton({ id }) {
       try {
         await http.delete(url);
         console.log("successfully deleted");
+        getPosts();
       } catch (error) {
         console.log(error);
         setError(error.toString());
