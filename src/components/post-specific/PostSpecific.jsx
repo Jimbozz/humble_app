@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
@@ -18,19 +19,24 @@ export default function PostSpecific() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
+  const getPosts = useCallback(
+    async () => {
+      try {
+        const response = await http.get(url);
+        setPost(response.data);
+      } catch (error) {
+        setError(error.toString());
+      } finally {
+        setLoading(false);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
   useEffect(
     () => {
-      async function getPost() {
-        try {
-          const response = await http.get(url);
-          setPost(response.data);
-        } catch (error) {
-          setError(error.toString());
-        } finally {
-          setLoading(false);
-        }
-      }
-      getPost();
+      getPosts();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -62,6 +68,7 @@ export default function PostSpecific() {
         reactions={post.reactions}
         comments={post.comments}
         media={post.media}
+        getPosts={getPosts}
       />
       <hr className="card-line"></hr>
       <h3>Comments</h3>
