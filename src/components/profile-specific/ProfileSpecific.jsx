@@ -10,6 +10,7 @@ import { AlertInfo } from "../common/AlertInfo";
 import placeholderImage from "../../assets/profile-placeholder.png";
 import EditProfileButton from "./EditProfileButton";
 import AuthContext from "../../context/AuthContext";
+import { useCallback } from "react";
 
 export default function ProfileSpecific() {
   const [auth] = useContext(AuthContext);
@@ -26,24 +27,40 @@ export default function ProfileSpecific() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
-  useEffect(
-    () => {
-      async function getProfile() {
-        try {
-          const response = await http.get(url);
-          console.log("response", response.data);
-          setProfile(response.data);
-        } catch (error) {
-          setError(error.toString());
-        } finally {
-          setLoading(false);
-        }
-      }
-      getProfile();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+  const getProfile = useCallback(async () => {
+    try {
+      const response = await http.get(url);
+      console.log("response", response.data);
+      setProfile(response.data);
+    } catch (error) {
+      setError(error.toString());
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    getProfile();
+  }, []);
+
+  // useEffect(
+  //   () => {
+  //     async function getProfile() {
+  //       try {
+  //         const response = await http.get(url);
+  //         console.log("response", response.data);
+  //         setProfile(response.data);
+  //       } catch (error) {
+  //         setError(error.toString());
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     }
+  //     getProfile();
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   []
+  // );
 
   if (loading) {
     return <Loading />;
@@ -71,7 +88,9 @@ export default function ProfileSpecific() {
             onError={onImageError}
           />
         </div>
-        {auth.name === profile.name ? <EditProfileButton /> : null}
+        {auth.name === profile.name ? (
+          <EditProfileButton getProfile={getProfile} />
+        ) : null}
         <div className="user-info__avatar">
           <Image
             className="user-info__avatar-image"
