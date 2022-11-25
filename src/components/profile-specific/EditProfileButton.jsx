@@ -9,6 +9,7 @@ import useAxios from "../../hooks/useAxios";
 import FormError from "../common/FormError";
 import FormWarning from "../common/FormWarning";
 import { useParams } from "react-router-dom";
+import { useCallback } from "react";
 
 const schema = yup.object().shape({
   banner: yup
@@ -19,7 +20,7 @@ const schema = yup.object().shape({
     .url("Not a valid URL, make sure image is publicly hosted."),
 });
 
-export default function EditProfileButton() {
+export default function EditProfileButton({ getProfile }) {
   const { id } = useParams();
   const url = "social/profiles/" + id + "/media";
   const userUrl = "social/profiles/" + id;
@@ -43,6 +44,23 @@ export default function EditProfileButton() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  // const getData = useCallback(async () => {
+  //   try {
+  //     const response = await http.get(userUrl);
+  //     console.log(response.data);
+  //     setFormData(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setFetchError(error.toString());
+  //   } finally {
+  //     setFetchingData(false);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   useEffect(
     () => {
@@ -73,6 +91,7 @@ export default function EditProfileButton() {
       const response = await http.put(url, data);
       console.log(response.data);
       setUpdated(true);
+      getProfile();
       // setShow(false);
     } catch (error) {
       console.log(error);
