@@ -30,7 +30,7 @@ const schema = yup.object().shape({
     .url("Not a valid URL, make sure image is publicly hosted."),
 });
 
-export default function EditPostButton({ id }) {
+export default function EditPostButton({ id, getPosts }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -83,6 +83,7 @@ export default function EditPostButton({ id }) {
       const response = await http.put(url, data);
       console.log("updated", response.data);
       setUpdated(true);
+      getPosts();
     } catch (error) {
       console.log(error);
       setUpdateError(error.toString());
@@ -181,7 +182,7 @@ export default function EditPostButton({ id }) {
                 )}
               </Form.Group>
               <div className="form-create-button">
-                <DeleteButton id={id} />
+                <DeleteButton id={id} getPosts={getPosts} />
                 <Button variant="primary" type="submit">
                   Update
                 </Button>
