@@ -33,28 +33,6 @@ export default function PostsList() {
     []
   );
 
-  // useEffect(
-  //   () => {
-  //     async function getPosts() {
-  //       try {
-  //         const response = await http.get(
-  //           "social/posts/?_author=true&_comments=true&_reactions=true"
-  //         );
-  //         console.log("response", response.data);
-  //         setPosts(response.data);
-  //       } catch (error) {
-  //         console.log(error);
-  //         setError(error.toString());
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-  //     getPosts();
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   []
-  // );
-
   if (loading) {
     return <Loading />;
   }
