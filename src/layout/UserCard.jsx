@@ -4,6 +4,7 @@ import AuthContext from "../context/AuthContext";
 import useAxios from "../hooks/useAxios";
 import placeholderImage from "../assets/profile-placeholder.png";
 import AlertError from "../components/common/AlertError";
+import { useCallback } from "react";
 
 export default function UserCard() {
   const placeholder = placeholderImage;
@@ -12,17 +13,29 @@ export default function UserCard() {
     event.target.src = placeholder;
   };
 
-  //Get user name from local storage
   const userProfile = useContext(AuthContext);
   const profile = userProfile[0];
   const userName = profile.name;
-
-  //Get data from the specific user
 
   const [user, setUser] = useState([]);
   const [error, setError] = useState(null);
   const http = useAxios();
   const url = "social/profiles/" + userName;
+
+  // const getUser = useCallback(
+  //   async () => {
+  //     try {
+  //       const response = await http.get(url);
+  //       console.log("response", response.data);
+  //       setUser(response.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //       setError(error.toString());
+  //     }
+  //   },
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [setUser]
+  // );
 
   useEffect(
     () => {
@@ -41,6 +54,15 @@ export default function UserCard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+
+  //  useEffect(
+  //    () => {
+  //      getUser();
+  //      console.log("getting user");
+  //    },
+  //    // eslint-disable-next-line react-hooks/exhaustive-deps
+  //    []
+  //  );
 
   if (error) {
     return (
