@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 import AlertError from "../common/AlertError";
@@ -10,6 +11,24 @@ function ProfilesList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const http = useAxios();
+
+  // const getProfiles = useCallback(async () => {
+  //   try {
+  //     const response = await http.get(
+  //       "social/profiles/?_following=true&_followers=true"
+  //     );
+  //     console.log("hello", response.data);
+  //     setProfiles(response.data);
+  //   } catch (error) {
+  //     setError(error.toString());
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   getProfiles();
+  // }, []);
 
   useEffect(() => {
     async function getProfiles() {
