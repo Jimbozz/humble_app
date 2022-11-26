@@ -3,8 +3,9 @@ import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import fallback from "../../assets/profile-placeholder.png";
 import { Link } from "react-router-dom";
+import FollowButton from "./FollowButton";
 
-export default function ProfileCard({ name, avatar }) {
+export default function ProfileCard({ name, avatar, getProfile }) {
   const placeholderImage = fallback;
 
   const onImageError = (event) => {
@@ -30,7 +31,7 @@ export default function ProfileCard({ name, avatar }) {
             </Card.Title>
           </Link>
         </div>
-        <Button variant="outline-primary">Follow</Button>
+        <FollowButton name={name} getProfile={getProfile} />
       </Card.Body>
     </Card>
   );
