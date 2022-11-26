@@ -11,6 +11,7 @@ import placeholderImage from "../../assets/profile-placeholder.png";
 import EditProfileButton from "./EditProfileButton";
 import AuthContext from "../../context/AuthContext";
 import { useCallback } from "react";
+import FollowButton from "../profiles/FollowButton";
 
 export default function ProfileSpecific() {
   const [auth] = useContext(AuthContext);
@@ -114,6 +115,7 @@ export default function ProfileSpecific() {
           </span>
           Following
         </Col>
+        <FollowButton name={profile.name} />
       </div>
       <Tabs
         defaultActiveKey="posts"
@@ -130,7 +132,11 @@ export default function ProfileSpecific() {
                 const { name, avatar } = item;
                 return (
                   <Col key={name}>
-                    <ProfileCard name={name} avatar={avatar} />
+                    <ProfileCard
+                      name={name}
+                      avatar={avatar}
+                      getProfile={getProfile}
+                    />
                   </Col>
                 );
               })
@@ -149,7 +155,11 @@ export default function ProfileSpecific() {
                 const { name, avatar } = item;
                 return (
                   <Col key={name}>
-                    <ProfileCard name={name} avatar={avatar} />
+                    <ProfileCard
+                      name={name}
+                      avatar={avatar}
+                      getProfile={getProfile}
+                    />
                   </Col>
                 );
               })
