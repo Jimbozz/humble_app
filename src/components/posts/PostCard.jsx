@@ -1,4 +1,4 @@
-import { Button, Card, Row } from "react-bootstrap";
+import { Badge, Button, Card, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 import placeholderImage from "../../assets/profile-placeholder.png";
@@ -21,6 +21,7 @@ export default function PostCard({
   comments,
   symbol,
   getPosts,
+  tags,
 }) {
   const [auth] = useContext(AuthContext);
 
@@ -32,7 +33,7 @@ export default function PostCard({
     event.target.style.display = "none";
   };
 
-  const hasReactions = reactions.length;
+  // const hasReactions = reactions.length;
 
   return (
     <Card bg="dark" className="card-width" id={id}>
@@ -62,7 +63,7 @@ export default function PostCard({
             <EditPostButton id={id} getPosts={getPosts} />
           ) : null}
         </div>
-        <Link className="card-link" to={`/post/${id}/${title}`} key={id}>
+        <Link className="card-link" to={`/post/${id}`} key={id}>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{body}</Card.Text>
           <Card.Img
@@ -70,13 +71,20 @@ export default function PostCard({
             onError={(e) => (e.target.style.display = "none")}
           />
         </Link>
+        <div className="d-flex card-tags">
+          {tags.map((item, index) => {
+            return (
+              <Badge key={index} bg="info">
+                {item}
+              </Badge>
+            );
+          })}
+        </div>
         <hr className="card-line"></hr>
         <div className="card-emoji">
-          {hasReactions
-            ? reactions.map((item) => {
-                return <div key={item.symbol}>{item.symbol}</div>;
-              })
-            : null}
+          {reactions.map((item) => {
+            return <div key={item.symbol}>{item.symbol}</div>;
+          })}
         </div>
         <div className="d-flex gap-3">
           <ReactButton
