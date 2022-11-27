@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
@@ -47,11 +47,18 @@ export default function FollowButton({ name, getProfile }) {
           Follow
         </Button>
       )} */}
-      <Button onClick={unFollowUser} variant="outline-danger">
+      {/* <Button onClick={unFollowUser} variant="danger">
         Un-follow
       </Button>
 
       <Button onClick={followUser} variant="primary">
+        Follow
+      </Button> */}
+      <Button onClick={unFollowUser} variant="danger" disabled={!following}>
+        Un-follow
+      </Button>
+
+      <Button onClick={followUser} variant="primary" disabled={following}>
         Follow
       </Button>
     </>
