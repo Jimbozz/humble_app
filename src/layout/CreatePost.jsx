@@ -45,11 +45,15 @@ export default function CreatePost() {
     try {
       const response = await http.post(url, data);
       console.log(response.data);
+      setShow(false);
     } catch (error) {
       console.log(error);
       setCreateError(error.toString());
     } finally {
       setSubmitting(false);
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
     }
   }
 
