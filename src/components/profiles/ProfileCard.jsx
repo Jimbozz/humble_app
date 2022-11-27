@@ -25,13 +25,13 @@ export default function ProfileCard({ name, avatar, getProfile }) {
               onError={onImageError}
             />
           </div>
-          <Link to={`${name}`}>
+          <Link to={name}>
             <Card.Title className="profile-card__content-name">
               {name}
             </Card.Title>
           </Link>
         </div>
-        <FollowButton name={name} getProfile={getProfile} />
+        {/* <FollowButton name={name} getProfile={getProfile} /> */}
       </Card.Body>
     </Card>
   );
