@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 import useAxios from "../../hooks/useAxios";
 
 export default function DeleteButton({ id, getPosts }) {
-  const [error, setError] = useState(null);
   const http = useAxios();
   //  const navigate = useNavigate();
   const url = `social/posts/${id}`;
@@ -16,18 +15,16 @@ export default function DeleteButton({ id, getPosts }) {
     if (confirmDelete) {
       try {
         await http.delete(url);
-        console.log("successfully deleted");
         getPosts();
       } catch (error) {
         console.log(error);
-        setError(error.toString());
       }
     }
   }
 
   return (
     <Button variant="danger" type="submit" onClick={manageDelete}>
-      {error ? "Error" : "Delete"}
+      Delete
     </Button>
   );
 }
