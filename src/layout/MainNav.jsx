@@ -6,6 +6,7 @@ import { BiLogOut } from "react-icons/bi";
 import CreatePostButton from "./CreatePost";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import LogoutButton from "../components/common/LogoutButton";
 
 export default function MainNav() {
   const [auth] = useContext(AuthContext);
@@ -46,24 +47,19 @@ export default function MainNav() {
             <BsFillPersonFill />
             <span className="sidebar-content__list--name">Profile</span>
           </NavLink>
-          <NavLink
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/login"
-            className="sidebar-content__list--item sidebar-content__list--item-none nav-link">
-            <BiLogOut />
-          </NavLink>
+          <LogoutButton />
         </div>
         <CreatePostButton />
-        <hr className="sidebar-content__line"></hr>
+        {/* <hr className="sidebar-content__line"></hr>
         <ButtonGroup justified="true" className="sidebar-content__dropdown">
           <DropdownButton
             variant="dark"
             id="dropdown-basic-button"
-            title="User name"
+            title={userName}
             menuVariant="dark">
-            <Dropdown.Item href="#/action-1">Logout</Dropdown.Item>
+            <LogoutButton />
           </DropdownButton>
-        </ButtonGroup>
+        </ButtonGroup> */}
       </div>
     </aside>
   );
