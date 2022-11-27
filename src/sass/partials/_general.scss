@@ -34,17 +34,17 @@ a {
 //flex layout
 
 .sidebar {
-  flex: 2;
-  @media (max-width: 990px) {
-    flex: 1;
-  }
+  flex: 1;
+  // @media (max-width: 990px) {
+  //   flex: 1;
+  // }
   @media (max-width: 700px) {
     flex: 0;
   }
 }
 .user-card-container {
-  flex: 2;
-  padding: 5rem 1rem 5rem 0px;
+  flex: 1;
+  padding: 5rem 2rem 5rem 0px;
 
   @media (max-width: 1000px) {
     display: none;
@@ -54,13 +54,13 @@ a {
   display: flex;
   height: 100vh;
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     flex-direction: column-reverse;
   }
 }
 //max-width for all cards in main content
 .card-width {
-  max-width: 600px;
+  max-width: 40rem;
   margin: 0 auto;
 }
 
