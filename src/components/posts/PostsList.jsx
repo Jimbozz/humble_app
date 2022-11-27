@@ -59,6 +59,7 @@ export default function PostsList() {
             reactions,
             comments,
             media,
+            tags,
           } = post;
           return (
             <Col key={id}>
@@ -72,6 +73,7 @@ export default function PostsList() {
                 reactions={reactions}
                 comments={comments}
                 media={media}
+                tags={tags}
                 getPosts={getPosts}
               />
             </Col>
