@@ -115,7 +115,11 @@ export default function ProfileSpecific() {
           </span>
           Following
         </Col>
-        <FollowButton name={profile.name} />
+      </div>
+      <div className="d-flex justify-content-center mb-3 user-follow">
+        {auth.name !== profile.name ? (
+          <FollowButton name={profile.name} getProfile={getProfile} />
+        ) : null}
       </div>
       <Tabs
         defaultActiveKey="posts"
