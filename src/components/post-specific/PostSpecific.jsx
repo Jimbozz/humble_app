@@ -68,6 +68,7 @@ export default function PostSpecific() {
         reactions={post.reactions}
         comments={post.comments}
         media={post.media}
+        tags={post.tags}
         getPosts={getPosts}
       />
       <hr className="card-line"></hr>
