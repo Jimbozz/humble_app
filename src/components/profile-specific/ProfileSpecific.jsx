@@ -15,7 +15,7 @@ import {
 } from "react-bootstrap";
 import Posts from "./PostsList";
 import ProfileCard from "../profiles/ProfileCard";
-import { AlertInfo } from "../common/AlertInfo";
+import AlertInfo from "../common/AlertInfo";
 import placeholderImage from "../../assets/profile-placeholder.png";
 import EditProfileButton from "./EditProfileButton";
 import AuthContext from "../../context/AuthContext";
@@ -138,7 +138,7 @@ export default function ProfileSpecific() {
                 const { name, avatar } = item;
                 return (
                   <Col key={name}>
-                    <ProfileCard name={name} avatar={avatar} />
+                    <ProfileCard avatar={avatar} name={name} />
                   </Col>
                 );
               })
@@ -148,7 +148,6 @@ export default function ProfileSpecific() {
               </Col>
             )}
           </Row>
-          {/* <FollowersList /> */}
         </Tab>
         <Tab eventKey="following" title="Following">
           <Row xs={1} className="g-4 mb-5">
