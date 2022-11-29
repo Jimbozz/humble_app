@@ -30,22 +30,26 @@ function ProfilesList() {
   //   getProfiles();
   // }, []);
 
-  useEffect(() => {
-    async function getProfiles() {
-      try {
-        const response = await http.get(
-          "social/profiles/?_following=true&_followers=true"
-        );
-        console.log("hello", response.data);
-        setProfiles(response.data);
-      } catch (error) {
-        setError(error.toString());
-      } finally {
-        setLoading(false);
+  useEffect(
+    () => {
+      async function getProfiles() {
+        try {
+          const response = await http.get(
+            "social/profiles/?_following=true&_followers=true"
+          );
+          console.log("hello", response.data);
+          setProfiles(response.data);
+        } catch (error) {
+          setError(error.toString());
+        } finally {
+          setLoading(false);
+        }
       }
-    }
-    getProfiles();
-  }, []);
+      getProfiles();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   if (loading) {
     return <Loading />;
