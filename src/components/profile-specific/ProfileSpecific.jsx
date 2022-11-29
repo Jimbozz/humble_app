@@ -1,9 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import Loading from "../common/Loading";
 import AlertError from "../common/AlertError";
-import { Button, Col, Container, Image, Row, Tab, Tabs } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Image,
+  Row,
+  Tab,
+  Tabs,
+} from "react-bootstrap";
 import Posts from "./PostsList";
 import ProfileCard from "../profiles/ProfileCard";
 import { AlertInfo } from "../common/AlertInfo";
@@ -16,9 +25,17 @@ import FollowButton from "../profiles/FollowButton";
 export default function ProfileSpecific() {
   const [auth] = useContext(AuthContext);
   const placeholder = placeholderImage;
+  const placeholderBanner =
+    "https://images.unsplash.com/photo-1552688468-d87e6f7a58f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80";
+
   const onImageError = (event) => {
     event.target.onerror = null;
     event.target.src = placeholder;
+  };
+
+  const onImageErrorBanner = (event) => {
+    event.target.onerror = null;
+    event.target.src = placeholderBanner;
   };
 
   let { id } = useParams();
@@ -40,28 +57,13 @@ export default function ProfileSpecific() {
     }
   }, []);
 
-  useEffect(() => {
-    getProfile();
-  }, []);
-
-  // useEffect(
-  //   () => {
-  //     async function getProfile() {
-  //       try {
-  //         const response = await http.get(url);
-  //         console.log("response", response.data);
-  //         setProfile(response.data);
-  //       } catch (error) {
-  //         setError(error.toString());
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-  //     getProfile();
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   []
-  // );
+  useEffect(
+    () => {
+      getProfile();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   if (loading) {
     return <Loading />;
@@ -84,9 +86,9 @@ export default function ProfileSpecific() {
         <div className="user-info__banner">
           <Image
             className="user-info__banner-image"
-            src={profile.banner ? profile.banner : placeholder}
+            src={profile.banner ? profile.banner : placeholderBanner}
             alt={profile.name}
-            onError={onImageError}
+            onError={onImageErrorBanner}
           />
         </div>
         {auth.name === profile.name ? (
@@ -136,11 +138,7 @@ export default function ProfileSpecific() {
                 const { name, avatar } = item;
                 return (
                   <Col key={name}>
-                    <ProfileCard
-                      name={name}
-                      avatar={avatar}
-                      getProfile={getProfile}
-                    />
+                    <ProfileCard name={name} avatar={avatar} />
                   </Col>
                 );
               })
@@ -159,11 +157,7 @@ export default function ProfileSpecific() {
                 const { name, avatar } = item;
                 return (
                   <Col key={name}>
-                    <ProfileCard
-                      name={name}
-                      avatar={avatar}
-                      getProfile={getProfile}
-                    />
+                    <ProfileCard name={name} avatar={avatar} />
                   </Col>
                 );
               })
