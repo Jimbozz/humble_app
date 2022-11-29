@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Alert, Container } from "react-bootstrap";
 
 function AlertError({ children }) {
@@ -10,5 +10,9 @@ function AlertError({ children }) {
     </Container>
   );
 }
+
+AlertError.propTypes = {
+  children: PropTypes.string,
+};
 
 export default AlertError;
