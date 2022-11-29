@@ -24,7 +24,7 @@ const schema = yup.object().shape({
     .required("Must be a minimum of 2 characters")
     .min(2, "Title should be at least 2 characters"),
   body: yup.string(),
-  // tags: yup.array(),
+  tags: yup.array().ensure(),
   media: yup
     .string()
     .url("Not a valid URL, make sure image is publicly hosted."),
@@ -51,7 +51,6 @@ export default function EditPostButton({ id, getPosts }) {
   });
 
   const http = useAxios();
-
   const url = "social/posts/" + id;
 
   useEffect(
@@ -76,16 +75,23 @@ export default function EditPostButton({ id, getPosts }) {
 
   async function onSubmit(data) {
     setUpdatingPage(true);
-    setUpdateError(null);
     setUpdated(false);
+    const postTags = data.tags;
+    const formattedTags = postTags.toString().split(" ");
+
+    const formData = {
+      title: data.title,
+      body: data.body,
+      media: data.media,
+      tags: formattedTags,
+    };
 
     try {
-      const response = await http.put(url, data);
+      const response = await http.put(url, formData);
       console.log("updated", response.data);
       setUpdated(true);
       getPosts();
     } catch (error) {
-      console.log(error);
       setUpdateError(error.toString());
     } finally {
       setUpdatingPage(false);
@@ -106,12 +112,10 @@ export default function EditPostButton({ id, getPosts }) {
         <Dropdown.Toggle variant="options" id="dropdown-basic">
           <BsThreeDots />
         </Dropdown.Toggle>
-
         <Dropdown.Menu variant="dark">
           <Dropdown.Item as="button" onClick={handleShow}>
             Edit post
           </Dropdown.Item>
-          {/* <Dropdown.Item as="button">Delete post</Dropdown.Item> */}
         </Dropdown.Menu>
       </Dropdown>
 
@@ -154,9 +158,10 @@ export default function EditPostButton({ id, getPosts }) {
                   <FormWarning>{errors.body.message}</FormWarning>
                 )}
               </Form.Group>
-              {/* <Form.Group className="mb-3" controlId="postTags">
+              <Form.Group className="mb-3" controlId="postTags">
                 <Form.Label>Tags (optional)</Form.Label>
                 <Form.Control
+                  defaultValue={page.tags}
                   placeholder="Tags"
                   aria-describedby="postTags"
                   {...register("tags")}
@@ -165,9 +170,9 @@ export default function EditPostButton({ id, getPosts }) {
                   <FormWarning>{errors.tags.message}</FormWarning>
                 )}
                 <Form.Text className="text-muted">
-                  Separate tags with a comma.
+                  Use a space between tags and remove commas.
                 </Form.Text>
-              </Form.Group> */}
+              </Form.Group>
               <Form.Group className="mb-3" controlId="media">
                 <Form.Label>Media</Form.Label>
                 <Form.Control
