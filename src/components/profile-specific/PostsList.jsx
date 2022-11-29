@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import AlertError from "../common/AlertError";
-import { AlertInfo } from "../common/AlertInfo";
+import AlertInfo from "../common/AlertInfo";
 import Loading from "../common/Loading";
 import PostCard from "../posts/PostCard";
 
