@@ -16,7 +16,7 @@ const schema = yup.object().shape({
     .required("Must be a minimum of 2 characters")
     .min(2, "Title should be at least 2 characters"),
   body: yup.string(),
-  // tags: yup.array(),
+  tags: yup.string(),
   media: yup
     .string()
     .url("Not a valid URL, make sure image is publicly hosted."),
@@ -40,10 +40,19 @@ export default function CreatePost() {
   });
 
   async function onSubmit(data) {
+    const postTags = data.tags;
+    const formattedTags = postTags.toString().split(",");
+
+    const formData = {
+      title: data.title,
+      body: data.body,
+      media: data.media,
+      tags: formattedTags,
+    };
     setSubmitting(true);
     setCreateError(null);
     try {
-      const response = await http.post(url, data);
+      const response = await http.post(url, formData);
       console.log(response.data);
       setShow(false);
     } catch (error) {
@@ -100,7 +109,7 @@ export default function CreatePost() {
                 )}
               </Form.Group>
 
-              {/* <Form.Group className="mb-3" controlId="postTags">
+              <Form.Group className="mb-3" controlId="postTags">
                 <Form.Label>Tags (optional)</Form.Label>
                 <Form.Control
                   placeholder="Tags"
@@ -111,9 +120,9 @@ export default function CreatePost() {
                   <FormWarning>{errors.tags.message}</FormWarning>
                 )}
                 <Form.Text className="text-muted">
-                  Separate tags with a comma.
+                  Separate tags with a space.
                 </Form.Text>
-              </Form.Group> */}
+              </Form.Group>
 
               <Form.Group className="mb-3" controlId="postMedia">
                 <Form.Label>Image URL (optional)</Form.Label>
