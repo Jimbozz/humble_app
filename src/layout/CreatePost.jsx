@@ -41,7 +41,7 @@ export default function CreatePost() {
 
   async function onSubmit(data) {
     const postTags = data.tags;
-    const formattedTags = postTags.toString().split(",");
+    const formattedTags = postTags.toString().split(" ");
 
     const formData = {
       title: data.title,
@@ -70,10 +70,10 @@ export default function CreatePost() {
     <>
       <Button
         variant="primary"
-        className=" sidebar-content__button"
+        className="sidebar-content__button"
         onClick={handleShow}>
         <BsPlusLg />
-        <div>Create post</div>
+        <div className="sidebar-content__button--name">Create</div>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
