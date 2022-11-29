@@ -7,10 +7,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import { BASE_URL, TOKEN_PATH } from "../../constants/api";
+import { BASE_URL } from "../../constants/api";
 import AuthContext from "../../context/AuthContext";
 import FormError from "../common/FormError";
-
 import FormWarning from "../common/FormWarning";
 
 const loginUrl = BASE_URL + "social/auth/login";
