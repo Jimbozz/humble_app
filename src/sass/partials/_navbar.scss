@@ -28,7 +28,7 @@
 
       @media (max-width: 600px) {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         margin-bottom: 0px;
       }
 
@@ -38,7 +38,7 @@
         gap: 1.5rem;
         font-size: 1.3rem;
         font-weight: 500;
-        padding: 10px;
+        padding: 10px 0px;
 
         &:hover {
           background-color: $color-gray-dark;
@@ -70,12 +70,22 @@
     }
 
     &__button {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      &--name {
+        @media (max-width: 600px) {
+          display: none;
+        }
+      }
       @media (max-width: 600px) {
         position: absolute;
         top: -43px;
         /* width: 20px; */
         right: 10px;
         z-index: 1;
+        padding: 0.5rem;
       }
     }
 
