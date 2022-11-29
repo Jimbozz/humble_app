@@ -41,7 +41,7 @@ export default function MainNav() {
           </NavLink>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to={`profiles/${userName}`}
+            to={`/profiles/${userName}`}
             className="sidebar-content__list--item nav-link"
             end>
             <BsFillPersonFill />
