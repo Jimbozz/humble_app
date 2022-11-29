@@ -63,7 +63,7 @@ export default function PostCard({
             <EditPostButton id={id} getPosts={getPosts} />
           ) : null}
         </div>
-        <Link className="card-link" to={`/post/${id}`} key={id}>
+        <Link className="card-link" to={`/post/${id}/${title}`} key={id}>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{body}</Card.Text>
           <Card.Img
