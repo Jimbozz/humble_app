@@ -14,10 +14,12 @@ export default function FollowButton({ name, getProfile }) {
     try {
       const response = await http.put(followUrl);
       console.log("response", response.data);
-      setFollowing(true);
+
       getProfile();
     } catch (error) {
       console.log(error);
+    } finally {
+      setFollowing(true);
     }
   };
 
@@ -25,10 +27,12 @@ export default function FollowButton({ name, getProfile }) {
     try {
       const response = await http.put(unFollowUrl);
       console.log("response", response.data);
-      setFollowing(false);
+
       getProfile();
     } catch (error) {
       console.log(error);
+    } finally {
+      setFollowing(false);
     }
   };
 
@@ -38,27 +42,10 @@ export default function FollowButton({ name, getProfile }) {
 
   return (
     <>
-      {/* {following ? (
-        <Button onClick={unFollowUser} variant="outline-danger">
-          Un-follow
-        </Button>
-      ) : (
-        <Button onClick={followUser} variant="primary">
-          Follow
-        </Button>
-      )} */}
-      {/* <Button onClick={unFollowUser} variant="danger">
+      <Button onClick={unFollowUser} variant="danger">
         Un-follow
       </Button>
-
       <Button onClick={followUser} variant="primary">
-        Follow
-      </Button> */}
-      <Button onClick={unFollowUser} variant="danger" disabled={!following}>
-        Un-follow
-      </Button>
-
-      <Button onClick={followUser} variant="primary" disabled={following}>
         Follow
       </Button>
     </>
