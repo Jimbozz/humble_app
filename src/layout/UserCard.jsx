@@ -18,7 +18,6 @@ export default function UserCard() {
   const userName = profile.name;
 
   const [user, setUser] = useState([]);
-  const [error, setError] = useState(null);
   const http = useAxios();
   const url = "social/profiles/" + userName;
 
@@ -46,7 +45,6 @@ export default function UserCard() {
           setUser(response.data);
         } catch (error) {
           console.log(error);
-          setError(error.toString());
         }
       }
       getUser();
@@ -64,13 +62,13 @@ export default function UserCard() {
   //    []
   //  );
 
-  if (error) {
-    return (
-      <AlertError>
-        There was an error. Please reload the page or try again later
-      </AlertError>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <AlertError>
+  //       There was an error. Please reload the page or try again later
+  //     </AlertError>
+  //   );
+  // }
 
   return (
     <aside className="user-card-container">
