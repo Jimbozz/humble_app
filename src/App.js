@@ -16,19 +16,19 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/register" element={<RegisterPage />} />
-        {/* <Route path="/profile/:id" element={<ProfileSpecificPage />} /> */}
-        <Route path="post">
-          <Route path=":id" element={<PostSpecificPage />} />
-        </Route>
-        {/* <Route path="post:id" element={<PostSpecificPage />} /> */}
         <Route exact path="/login" element={<LoginPage />} />
+        <Route path="post">
+          <Route path=":id/:title" element={<PostSpecificPage />} />
+        </Route>
+
         <Route path="/profiles" element={<ProfilesPage />} />
-        {/* <Route path="/profiles/:name" element={<ProfilesPage />} /> */}
-        <Route path="profiles">
+        <Route path="/profiles/:id" element={<ProfileSpecificPage />} />
+        <Route path="/profiles/:name" element={<ProfileSpecificPage />} />
+        {/* <Route path="profiles">
           <Route path=":id" element={<ProfileSpecificPage />} />
           <Route path=":id/:id" element={<ProfileSpecificPage />} />
-          {/* <Route path=":name" element={<ProfileSpecificPage />} /> */}
-        </Route>
+          <Route path=":name" element={<ProfileSpecificPage />} />
+        </Route> */}
       </Routes>
     </AuthProvider>
   );
