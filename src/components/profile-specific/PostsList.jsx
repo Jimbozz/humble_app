@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import AlertError from "../common/AlertError";
@@ -18,16 +19,20 @@ function Posts() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
-  const getPosts = useCallback(async () => {
-    try {
-      const response = await http.get(url);
-      setPosts(response.data);
-    } catch (error) {
-      setError(error.toString());
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const getPosts = useCallback(
+    async () => {
+      try {
+        const response = await http.get(url);
+        setPosts(response.data);
+      } catch (error) {
+        setError(error.toString());
+      } finally {
+        setLoading(false);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   useEffect(
     () => {
@@ -36,25 +41,6 @@ function Posts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
-
-  // useEffect(
-  //   () => {
-  //     async function getPosts() {
-  //       try {
-  //         const response = await http.get(url);
-  //         setPosts(response.data);
-  //       } catch (error) {
-  //         setError(error.toString());
-  //       } finally {
-  //         setLoading(false);
-  //       }
-  //     }
-
-  //     getPosts();
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   []
-  // );
 
   if (loading) {
     return <Loading />;

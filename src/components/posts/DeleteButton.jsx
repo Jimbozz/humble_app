@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import useAxios from "../../hooks/useAxios";
 
 export default function DeleteButton({ id, getPosts }) {
   const http = useAxios();
-  //  const navigate = useNavigate();
   const url = `social/posts/${id}`;
 
   async function manageDelete() {

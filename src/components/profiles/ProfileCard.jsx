@@ -1,5 +1,4 @@
-import React, { useCallback, useContext } from "react";
-import { Button, Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import PropTypes from "prop-types";
 import fallback from "../../assets/profile-placeholder.png";
 import { Link } from "react-router-dom";

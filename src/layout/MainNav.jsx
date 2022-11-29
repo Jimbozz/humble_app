@@ -1,8 +1,6 @@
-import { Button, ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
-import { BiLogOut } from "react-icons/bi";
 import CreatePostButton from "./CreatePost";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -50,16 +48,6 @@ export default function MainNav() {
           <LogoutButton />
         </div>
         <CreatePostButton />
-        {/* <hr className="sidebar-content__line"></hr>
-        <ButtonGroup justified="true" className="sidebar-content__dropdown">
-          <DropdownButton
-            variant="dark"
-            id="dropdown-basic-button"
-            title={userName}
-            menuVariant="dark">
-            <LogoutButton />
-          </DropdownButton>
-        </ButtonGroup> */}
       </div>
     </aside>
   );

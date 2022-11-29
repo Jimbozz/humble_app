@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
-import { Dropdown } from "react-bootstrap";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 export default function LogoutButton({ activeStyle }) {
   const [, setAuth] = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   function logoutUser() {

@@ -1,7 +1,10 @@
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { useCallback } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import AlertError from "../common/AlertError";
@@ -13,7 +16,6 @@ export default function PostSpecific() {
   let { id } = useParams();
   const url =
     "social/posts/" + id + "?_author=true&_comments=true&_reactions=true";
-
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

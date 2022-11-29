@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { AiOutlineHeart } from "react-icons/ai";
 import useAxios from "../../hooks/useAxios";
 
@@ -22,11 +21,8 @@ export default function ReactButton({ reactions, id, getPosts }) {
     const emojiName = event.target.innerText;
     const url = "social/posts/" + id + "/react/" + emojiName;
 
-    console.log(url);
-
     try {
-      const response = await http.put(url);
-      console.log(response.data);
+      await http.put(url);
       getPosts();
     } catch (error) {
       console.log(error);

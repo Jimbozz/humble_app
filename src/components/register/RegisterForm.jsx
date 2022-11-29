@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -57,20 +57,9 @@ export default function RegisterForm() {
     setSubmitting(true);
     setRegisterError(null);
 
-    console.log(data);
-
     try {
-      const response = await axios.post(registerUrl, data);
-      console.log("response", response.data);
-      //Look to see if we can tell if user is already in database!
+      await axios.post(registerUrl, data);
       navigate("/login");
-      // if (response.ok) {
-      //   navigate("/login");
-      // } else {
-      //   setRegisterError(
-      //     "Unable to register, please make sure credentials are correct otherwise contact support."
-      //   );
-      // }
     } catch (error) {
       console.log(error);
       setRegisterError(error.toString());

@@ -1,4 +1,3 @@
-import { Card } from "react-bootstrap";
 import Heading from "../common/Heading";
 import Layout from "../../layout/Layout";
 import ProfilesList from "./ProfilesList";

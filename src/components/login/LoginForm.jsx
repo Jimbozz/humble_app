@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState, useContext } from "react";
@@ -30,6 +29,7 @@ const schema = yup.object().shape({
 export default function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(null);
+  const [, setAuth] = useContext(AuthContext);
 
   const navigate = useNavigate();
   const {
@@ -38,17 +38,12 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const [, setAuth] = useContext(AuthContext);
   async function onSubmit(data) {
     setSubmitting(true);
     setLoginError(null);
 
-    console.log(data);
-
     try {
       const response = await axios.post(loginUrl, data);
-      console.log("response", response.data);
-
       setAuth(response.data);
       navigate("/");
     } catch (error) {

@@ -1,6 +1,6 @@
-import { Button, Container } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import LoginForm from "./LoginForm";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 

@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import useAxios from "../../hooks/useAxios";
 import AlertError from "../common/AlertError";
 import Loading from "../common/Loading";
@@ -11,19 +13,23 @@ export default function PostsList() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
-  const getPosts = useCallback(async () => {
-    try {
-      const response = await http.get(
-        "social/posts/?_author=true&_comments=true&_reactions=true"
-      );
-      setPosts(response.data);
-    } catch (error) {
-      console.log(error);
-      setError(error.toString());
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const getPosts = useCallback(
+    async () => {
+      try {
+        const response = await http.get(
+          "social/posts/?_author=true&_comments=true&_reactions=true"
+        );
+        setPosts(response.data);
+      } catch (error) {
+        console.log(error);
+        setError(error.toString());
+      } finally {
+        setLoading(false);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   useEffect(
     () => {

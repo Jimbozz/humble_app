@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import AuthContext from "../context/AuthContext";
 import useAxios from "../hooks/useAxios";
 import placeholderImage from "../assets/profile-placeholder.png";
-import AlertError from "../components/common/AlertError";
-import { useCallback } from "react";
 
 export default function UserCard() {
   const placeholder = placeholderImage;
@@ -20,21 +18,6 @@ export default function UserCard() {
   const [user, setUser] = useState([]);
   const http = useAxios();
   const url = "social/profiles/" + userName;
-
-  // const getUser = useCallback(
-  //   async () => {
-  //     try {
-  //       const response = await http.get(url);
-  //       console.log("response", response.data);
-  //       setUser(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //       setError(error.toString());
-  //     }
-  //   },
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [setUser]
-  // );
 
   useEffect(
     () => {
@@ -53,27 +36,9 @@ export default function UserCard() {
     []
   );
 
-  //  useEffect(
-  //    () => {
-  //      getUser();
-  //      console.log("getting user");
-  //    },
-  //    // eslint-disable-next-line react-hooks/exhaustive-deps
-  //    []
-  //  );
-
-  // if (error) {
-  //   return (
-  //     <AlertError>
-  //       There was an error. Please reload the page or try again later
-  //     </AlertError>
-  //   );
-  // }
-
   return (
     <aside className="user-card-container">
       <Card bg="dark">
-        {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
         <Card.Body className="d-flex align-items-center flex-column user-body">
           <div className="user-body__banner">
             <Card.Img

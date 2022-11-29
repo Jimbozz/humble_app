@@ -1,6 +1,5 @@
 import { format } from "date-fns";
-import React from "react";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import placeholderImage from "../../assets/profile-placeholder.png";
 
@@ -16,7 +15,6 @@ export default function CommentModalPost({
 
   const onImageError = (event) => {
     event.target.onerror = null;
-    // event.target.src = placeholder;
     event.target.style.display = "none";
   };
   return (
@@ -42,7 +40,6 @@ export default function CommentModalPost({
             </small>
           </div>
         </div>
-
         <Link className="card-link" to={`/post/${id}/${title}`} key={id}>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{body}</Card.Text>

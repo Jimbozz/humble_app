@@ -1,15 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import React, { useContext, useEffect, useState } from "react";
-import { Alert, Button, Form, Modal, Spinner } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import Spinner from "react-bootstrap/Spinner";
 import { useForm } from "react-hook-form";
 import { BiEdit } from "react-icons/bi";
 import useAxios from "../../hooks/useAxios";
-
 import FormError from "../common/FormError";
 import FormWarning from "../common/FormWarning";
 import { useParams } from "react-router-dom";
-import { useCallback } from "react";
 
 const schema = yup.object().shape({
   banner: yup
@@ -44,23 +46,6 @@ export default function EditProfileButton({ getProfile }) {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  // const getData = useCallback(async () => {
-  //   try {
-  //     const response = await http.get(userUrl);
-  //     console.log(response.data);
-  //     setFormData(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setFetchError(error.toString());
-  //   } finally {
-  //     setFetchingData(false);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   useEffect(
     () => {

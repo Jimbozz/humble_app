@@ -1,9 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import React, { useCallback, useEffect, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 import FormWarning from "../components/common/FormWarning";
 import FormError from "../components/common/FormError";
@@ -52,8 +53,7 @@ export default function CreatePost() {
     setSubmitting(true);
     setCreateError(null);
     try {
-      const response = await http.post(url, formData);
-      console.log(response.data);
+      await http.post(url, formData);
       setShow(false);
     } catch (error) {
       console.log(error);

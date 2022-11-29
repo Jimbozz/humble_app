@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import { Alert, Container } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
 
 function AlertError({ children }) {
   return (

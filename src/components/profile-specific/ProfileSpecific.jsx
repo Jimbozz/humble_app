@@ -1,18 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import Loading from "../common/Loading";
 import AlertError from "../common/AlertError";
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  Image,
-  Row,
-  Tab,
-  Tabs,
-} from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import Posts from "./PostsList";
 import ProfileCard from "../profiles/ProfileCard";
 import AlertInfo from "../common/AlertInfo";
@@ -45,17 +41,20 @@ export default function ProfileSpecific() {
   const [error, setError] = useState(null);
   const http = useAxios();
 
-  const getProfile = useCallback(async () => {
-    try {
-      const response = await http.get(url);
-      console.log("response", response.data);
-      setProfile(response.data);
-    } catch (error) {
-      setError(error.toString());
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const getProfile = useCallback(
+    async () => {
+      try {
+        const response = await http.get(url);
+        setProfile(response.data);
+      } catch (error) {
+        setError(error.toString());
+      } finally {
+        setLoading(false);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   useEffect(
     () => {

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Alert, Button, Form, Modal } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import { BiComment } from "react-icons/bi";
 import useAxios from "../../hooks/useAxios";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,7 +10,6 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import FormError from "../common/FormError";
 import FormWarning from "../common/FormWarning";
-import PostCard from "./PostCard";
 import CommentModalPost from "./CommentModalPost";
 
 const schema = yup.object().shape({
@@ -52,8 +54,7 @@ export default function CommentButton({
     console.log(data);
 
     try {
-      const response = await http.post(url, data);
-      console.log(response.data);
+      await http.post(url, data);
       setUpdated(true);
       getPosts();
     } catch (error) {

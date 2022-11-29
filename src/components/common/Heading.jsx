@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 

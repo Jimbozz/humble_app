@@ -1,8 +1,8 @@
-import { Badge, Button, Card, Row } from "react-bootstrap";
+import Badge from "react-bootstrap/Badge";
+import Card from "react-bootstrap/Card";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
 import placeholderImage from "../../assets/profile-placeholder.png";
-import { AiOutlineHeart } from "react-icons/ai";
 import EditPostButton from "./EditPostButton";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -24,16 +24,12 @@ export default function PostCard({
   tags,
 }) {
   const [auth] = useContext(AuthContext);
-
   const placeholder = placeholderImage;
 
   const onImageError = (event) => {
     event.target.onerror = null;
-    // event.target.src = placeholder;
     event.target.style.display = "none";
   };
-
-  // const hasReactions = reactions.length;
 
   return (
     <Card bg="dark" className="card-width" id={id}>
@@ -93,7 +89,6 @@ export default function PostCard({
             symbol={symbol}
             getPosts={getPosts}
           />
-
           <CommentButton
             comments={comments}
             id={id}

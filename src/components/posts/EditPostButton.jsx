@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
-import {
-  Alert,
-  Button,
-  Dropdown,
-  Form,
-  Modal,
-  Navbar,
-  Spinner,
-} from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import Spinner from "react-bootstrap/Spinner";
 import { BsThreeDots } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useAxios from "../../hooks/useAxios";
-import { useParams } from "react-router-dom";
 import FormError from "../common/FormError";
 import FormWarning from "../common/FormWarning";
 import DeleteButton from "./DeleteButton";
@@ -34,7 +30,6 @@ export default function EditPostButton({ id, getPosts }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   const [page, setPage] = useState(null);
   const [updated, setUpdated] = useState(false);
   const [fetchingPage, setFetchingPage] = useState(true);
@@ -58,7 +53,6 @@ export default function EditPostButton({ id, getPosts }) {
       async function getData() {
         try {
           const response = await http.get(url);
-          console.log("response", response.data);
           setPage(response.data);
         } catch (error) {
           console.log(error);
