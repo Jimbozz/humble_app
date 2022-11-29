@@ -1,9 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { Button, Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import fallback from "../../assets/profile-placeholder.png";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function ProfileCard({ name, avatar }) {
   const placeholderImage = fallback;
@@ -13,9 +12,12 @@ export default function ProfileCard({ name, avatar }) {
     event.target.src = placeholderImage;
   };
 
-  // useEffect(() => {
-  //   getProfile();
-  // }, [getProfile]);
+  const reloadPage = () => {
+    setTimeout(() => {
+      window.location.reload(true);
+    });
+  };
+
   return (
     <Card bg="dark" id={name} className="profile-card card-width">
       <Card.Body className="d-flex align-items-center justify-content-between gap-3">
@@ -29,13 +31,12 @@ export default function ProfileCard({ name, avatar }) {
               onError={onImageError}
             />
           </div>
-          <Link to={`/profiles/${name}`}>
+          <Link to={`/profiles/${name}`} onClick={reloadPage}>
             <Card.Title className="profile-card__content-name">
               {name}
             </Card.Title>
           </Link>
         </div>
-        {/* <FollowButton name={name} getProfile={getProfile} /> */}
       </Card.Body>
     </Card>
   );
