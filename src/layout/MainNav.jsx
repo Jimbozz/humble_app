@@ -17,7 +17,11 @@ export default function MainNav() {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <img src={require("../assets/humble-logo.png")} alt="humble logo" />
+        <img
+          className="sidebar-logo__image"
+          src={require("../assets/humble-logo.png")}
+          alt="humble logo"
+        />
       </div>
       <div className="sidebar-content">
         <div className="sidebar-content__list">
