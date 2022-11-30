@@ -14,7 +14,6 @@ export default function UserCard() {
   const userProfile = useContext(AuthContext);
   const profile = userProfile[0];
   const userName = profile.name;
-
   const [user, setUser] = useState([]);
   const http = useAxios();
   const url = "social/profiles/" + userName;
@@ -24,7 +23,6 @@ export default function UserCard() {
       async function getUser() {
         try {
           const response = await http.get(url);
-          console.log("response", response.data);
           setUser(response.data);
         } catch (error) {
           console.log(error);
