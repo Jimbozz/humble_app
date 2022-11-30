@@ -1,0 +1,89 @@
+.user-info {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__banner {
+    background-color: $color-gray-dark;
+    border-radius: 4px 4px 0px 0px;
+    height: 15rem;
+    width: 100%;
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+  }
+
+  &__edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px;
+
+    &-icon {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    bottom: 48px;
+    width: 5rem;
+    height: 5rem;
+    border-radius: $border-radius;
+    background-color: $color-grey-vary-dark;
+    border: 3px solid $color-gray-dark;
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__email {
+    margin: 3rem 0px 1rem 0px;
+    color: $color-gray-medium;
+  }
+
+  &__follow {
+    &-item {
+      gap: 10px;
+
+      &__number {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+.user-follow {
+  gap: 1rem;
+
+  &__number {
+    margin-right: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+}
+
+//Tabbed section
+
+.tab-container {
+  border-bottom: 1px solid $color-gray-line;
+
+  .nav-link:hover {
+    background-color: $color-gray-line;
+  }
+
+  .nav-link.active {
+    text-decoration: underline $color-green;
+    text-underline-position: under;
+    text-underline-offset: 9px;
+  }
+}

@@ -1,0 +1,64 @@
+//Custom
+
+$color-grey-vary-dark: #1a1a1a;
+$color-grey-vary-dark-transparent: #1a1a1ae8;
+$color-gray-dark: #282828;
+$color-gray-line: #444444;
+$color-gray-medium: #b0afaf;
+$color-gray-light: #e6e8e6;
+$color-white: white;
+$color-danger: #9c1a12;
+$color-danger-bright: #ff4545;
+$color-danger-muted: hsla(3, 79, 34, 0.3);
+$color-green: #defe65;
+$color-success: #57ab5a;
+$color-success-muted: hsla(122, 33, 51, 0.3);
+$color-warning: #ae7c14;
+$color-warning-muted: hsla(41, 79, 38, 0.3);
+
+//Bootstrap
+$theme-colors: (
+  "primary": $color-green,
+  "success": $color-success,
+  "info": #6eadf4,
+  "warning": $color-warning,
+  "danger": $color-danger,
+  "light": #c0ccda,
+  "dark": $color-gray-dark,
+);
+$font-family-base: "Roboto", sans-serif;
+$border-radius: 3px;
+$body-bg: $color-grey-vary-dark;
+$body-color: $color-gray-light;
+$dropdown-dark-bg: $color-gray-dark;
+$border-radius: 4px;
+$input-border-color: transparent;
+$input-bg: $color-grey-vary-dark;
+$btn-link-color: $color-gray-medium;
+$input-btn-padding-x: 1rem;
+$btn-font-weight: 500;
+$dropdown-dark-bg: $color-grey-vary-dark;
+$modal-content-border-radius: $border-radius;
+$modal-content-bg: $color-gray-dark;
+$nav-tabs-border-width: none;
+$nav-tabs-link-active-color: white;
+$nav-link-color: $color-gray-medium;
+$nav-link-hover-color: none;
+$popover-bg: black;
+$popover-border-color: $color-grey-vary-dark;
+$popover-body-padding-x: 0.5rem;
+$popover-body-padding-y: 0.5rem;
+
+@import "~bootstrap/scss/bootstrap";
+
+//Partials
+
+@import "./partials/general";
+@import "./partials/navbar";
+@import "./partials/forms";
+@import "./partials/post-card";
+@import "./partials/button-styles";
+@import "./partials/user-card";
+@import "./partials/modals";
+@import "./partials/profile-card";
+@import "./partials/profile-specific";

@@ -1,0 +1,17 @@
+.modal-header {
+  border-bottom: 0px;
+}
+
+.form {
+  &-create-button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+}
+
+// comment modal
+
+.comment-modal {
+  border: 0px;
+}

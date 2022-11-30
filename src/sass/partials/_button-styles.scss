@@ -1,0 +1,91 @@
+//Global post card button styles
+
+.card-button {
+  gap: 10px;
+
+  &__inner {
+    border: none;
+    background-color: transparent;
+    color: $color-gray-medium;
+  }
+}
+
+// React button styles
+
+.btn-heart {
+  color: grey;
+  padding: 0px;
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin-right: 5px;
+  }
+
+  &:hover &__icon {
+    background-color: #ff454557;
+    border-radius: $border-radius;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-danger-bright;
+  }
+}
+
+.btn-reaction {
+  transition: all 0.2s ease-in-out;
+  padding: 0px;
+
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
+.popover-body {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.3rem;
+}
+
+// comment button
+
+.btn-comment {
+  color: grey;
+  padding: 0px;
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin-right: 5px;
+  }
+
+  &:hover &__icon {
+    background-color: #ddfe6560;
+    border-radius: $border-radius;
+  }
+
+  &:hover {
+    color: $color-green;
+  }
+}
+
+//Post card options/edit button dropdown
+
+.btn-options {
+  padding: 0px;
+  display: flex;
+  color: $color-gray-medium;
+
+  &::after {
+    display: none;
+  }
+}
+
+//Bootstrap override
+
+.btn-link {
+  text-decoration: none;
+}
