@@ -30,12 +30,11 @@ export default function EditPostButton({ id, getPosts }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const [page, setPage] = useState(null);
   const [updated, setUpdated] = useState(false);
   const [fetchingPage, setFetchingPage] = useState(true);
-  const [updatingPage, setUpdatingPage] = useState(false);
-  const [fetchError, setFetchError] = useState(null);
-  const [updateError, setUpdateError] = useState(null);
+  const [editError, setEditError] = useState(null);
 
   const {
     register,
@@ -54,9 +53,10 @@ export default function EditPostButton({ id, getPosts }) {
         try {
           const response = await http.get(url);
           setPage(response.data);
+          setUpdated(false);
         } catch (error) {
           console.log(error);
-          setFetchError(error.toString());
+          setEditError(error.toString());
         } finally {
           setFetchingPage(false);
         }
@@ -68,8 +68,6 @@ export default function EditPostButton({ id, getPosts }) {
   );
 
   async function onSubmit(data) {
-    setUpdatingPage(true);
-    setUpdated(false);
     const postTags = data.tags;
     const formattedTags = postTags.toString().split(" ");
 
@@ -81,14 +79,11 @@ export default function EditPostButton({ id, getPosts }) {
     };
 
     try {
-      const response = await http.put(url, formData);
-      console.log("updated", response.data);
+      await http.put(url, formData);
       setUpdated(true);
       getPosts();
     } catch (error) {
-      setUpdateError(error.toString());
-    } finally {
-      setUpdatingPage(false);
+      setEditError(error.toString());
     }
   }
 
@@ -119,74 +114,66 @@ export default function EditPostButton({ id, getPosts }) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            {fetchError && <FormError>There was an error loading.</FormError>}
-            {updateError && (
-              <FormError>There was an error updating your post.</FormError>
-            )}
+            {editError && <FormError>There was an error loading.</FormError>}
             {updated && (
               <Alert variant="success">Your post has been updated.</Alert>
             )}
-            <fieldset disabled={updatingPage}>
-              <Form.Group className="mb-3" controlId="title">
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                  defaultValue={page.title}
-                  placeholder="post title"
-                  aria-describedby="title"
-                  {...register("title")}
-                />
-                {errors.title && (
-                  <FormWarning>{errors.title.message}</FormWarning>
-                )}
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="body">
-                <Form.Label>Body</Form.Label>
-                <Form.Control
-                  defaultValue={page.body}
-                  as="textarea"
-                  placeholder="Body text"
-                  aria-describedby="body"
-                  {...register("body")}
-                />
-                {errors.body && (
-                  <FormWarning>{errors.body.message}</FormWarning>
-                )}
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="postTags">
-                <Form.Label>Tags (optional)</Form.Label>
-                <Form.Control
-                  defaultValue={page.tags}
-                  placeholder="Tags"
-                  aria-describedby="postTags"
-                  {...register("tags")}
-                />
-                {errors.tags && (
-                  <FormWarning>{errors.tags.message}</FormWarning>
-                )}
-                <Form.Text className="text-muted">
-                  Use a space between tags and remove commas.
-                </Form.Text>
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="media">
-                <Form.Label>Media</Form.Label>
-                <Form.Control
-                  defaultValue={page.media}
-                  type="url"
-                  placeholder="https://example.com"
-                  aria-describedby="media"
-                  {...register("media")}
-                />
-                {errors.media && (
-                  <FormWarning>{errors.media.message}</FormWarning>
-                )}
-              </Form.Group>
-              <div className="form-create-button">
-                <DeleteButton id={id} getPosts={getPosts} />
-                <Button variant="primary" type="submit">
-                  Update
-                </Button>
-              </div>
-            </fieldset>
+
+            <Form.Group className="mb-3" controlId="title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                defaultValue={page.title}
+                placeholder="post title"
+                aria-describedby="title"
+                {...register("title")}
+              />
+              {errors.title && (
+                <FormWarning>{errors.title.message}</FormWarning>
+              )}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="body">
+              <Form.Label>Body</Form.Label>
+              <Form.Control
+                defaultValue={page.body}
+                as="textarea"
+                placeholder="Body text"
+                aria-describedby="body"
+                {...register("body")}
+              />
+              {errors.body && <FormWarning>{errors.body.message}</FormWarning>}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="postTags">
+              <Form.Label>Tags (optional)</Form.Label>
+              <Form.Control
+                defaultValue={page.tags}
+                placeholder="Tags"
+                aria-describedby="postTags"
+                {...register("tags")}
+              />
+              {errors.tags && <FormWarning>{errors.tags.message}</FormWarning>}
+              <Form.Text className="text-muted">
+                Use a space between tags and remove commas.
+              </Form.Text>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="media">
+              <Form.Label>Media</Form.Label>
+              <Form.Control
+                defaultValue={page.media}
+                type="url"
+                placeholder="https://example.com"
+                aria-describedby="media"
+                {...register("media")}
+              />
+              {errors.media && (
+                <FormWarning>{errors.media.message}</FormWarning>
+              )}
+            </Form.Group>
+            <div className="form-create-button">
+              <DeleteButton id={id} getPosts={getPosts} />
+              <Button variant="primary" type="submit">
+                Update
+              </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>
