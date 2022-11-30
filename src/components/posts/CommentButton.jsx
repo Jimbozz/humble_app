@@ -48,13 +48,9 @@ export default function CommentButton({
   });
 
   async function onSubmit(data) {
-    setSubmitting(true);
-    setCreateError(null);
-    setUpdated(false);
-    console.log(data);
-
     try {
       await http.post(url, data);
+      setSubmitting(true);
       setUpdated(true);
       getPosts();
     } catch (error) {
