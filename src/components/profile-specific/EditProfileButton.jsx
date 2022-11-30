@@ -35,9 +35,7 @@ export default function EditProfileButton({ getProfile }) {
   const [formData, setFormData] = useState(null);
   const [updated, setUpdated] = useState(false);
   const [fetchingData, setFetchingData] = useState(true);
-  const [updateData, setUpdateData] = useState(false);
-  const [fetchError, setFetchError] = useState(null);
-  const [updateError, setUpdateError] = useState(null);
+  const [createError, setCreateError] = useState(null);
 
   const {
     register,
@@ -52,11 +50,10 @@ export default function EditProfileButton({ getProfile }) {
       async function getData() {
         try {
           const response = await http.get(userUrl);
-          console.log(response.data);
           setFormData(response.data);
         } catch (error) {
           console.log(error);
-          setFetchError(error.toString());
+          setCreateError(error.toString());
         } finally {
           setFetchingData(false);
         }
@@ -68,21 +65,13 @@ export default function EditProfileButton({ getProfile }) {
   );
 
   async function onSubmit(data) {
-    setUpdateData(true);
-    setUpdateError(null);
-    setUpdated(false);
-
     try {
-      const response = await http.put(url, data);
-      console.log(response.data);
+      await http.put(url, data);
       setUpdated(true);
       getProfile();
-      // setShow(false);
     } catch (error) {
       console.log(error);
-      setUpdateError(error.toString());
-    } finally {
-      setUpdateData(false);
+      setCreateError(error.toString());
     }
   }
 
@@ -106,46 +95,44 @@ export default function EditProfileButton({ getProfile }) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            {fetchError && (
+            {createError && (
               <FormError>There was an error updating your profile.</FormError>
             )}
             {updated && (
               <Alert variant="success">Your profile has been updated.</Alert>
             )}
-            {updateError && <FormError>{updateError}</FormError>}
-            <fieldset disabled={updateData}>
-              <Form.Group className="mb-3" controlId="userBanner">
-                <Form.Label>Banner URL (optional)</Form.Label>
-                <Form.Control
-                  type="url"
-                  defaultValue={formData.banner}
-                  placeholder="https://example.com"
-                  aria-describedby="userBanner"
-                  {...register("banner")}
-                />
-                {errors.banner && (
-                  <FormWarning>{errors.banner.message}</FormWarning>
-                )}
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="userAvatar">
-                <Form.Label>Avatar URL (optional)</Form.Label>
-                <Form.Control
-                  type="url"
-                  defaultValue={formData.avatar}
-                  placeholder="https://example.com"
-                  aria-describedby="userAvatar"
-                  {...register("avatar")}
-                />
-                {errors.avatar && (
-                  <FormWarning>{errors.avatar.message}</FormWarning>
-                )}
-              </Form.Group>
-              <div className="form-create-button">
-                <Button variant="primary" type="submit">
-                  {updateData ? "updating profile" : "Update"}
-                </Button>
-              </div>
-            </fieldset>
+
+            <Form.Group className="mb-3" controlId="userBanner">
+              <Form.Label>Banner URL (optional)</Form.Label>
+              <Form.Control
+                type="url"
+                defaultValue={formData.banner}
+                placeholder="https://example.com"
+                aria-describedby="userBanner"
+                {...register("banner")}
+              />
+              {errors.banner && (
+                <FormWarning>{errors.banner.message}</FormWarning>
+              )}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="userAvatar">
+              <Form.Label>Avatar URL (optional)</Form.Label>
+              <Form.Control
+                type="url"
+                defaultValue={formData.avatar}
+                placeholder="https://example.com"
+                aria-describedby="userAvatar"
+                {...register("avatar")}
+              />
+              {errors.avatar && (
+                <FormWarning>{errors.avatar.message}</FormWarning>
+              )}
+            </Form.Group>
+            <div className="form-create-button">
+              <Button variant="primary" type="submit">
+                {updated ? "updating profile" : "Update"}
+              </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>
