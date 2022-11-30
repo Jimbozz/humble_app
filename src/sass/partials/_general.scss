@@ -77,6 +77,10 @@ a {
     display: flex;
     align-items: center;
 
+    @media (max-width: 600px) {
+      padding-top: 2rem;
+    }
+
     .btn-link {
       font-size: 1.5rem;
       padding: 0px 1rem 0px 0px;
