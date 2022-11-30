@@ -9,7 +9,7 @@ function HomePage() {
       <Helmet>
         <title>Humble | Home</title>
       </Helmet>
-      <Heading content="Home Page" />
+      <Heading content="Home" />
       <PostsList />
     </Layout>
   );

@@ -9,7 +9,7 @@ function ProfilesPage() {
       <Helmet>
         <title>Humble | Profiles</title>
       </Helmet>
-      <Heading content="Profiles Page" />
+      <Heading content="Profiles" />
       <ProfilesList />
     </Layout>
   );
