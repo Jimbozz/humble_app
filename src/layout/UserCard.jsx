@@ -6,9 +6,16 @@ import placeholderImage from "../assets/profile-placeholder.png";
 
 export default function UserCard() {
   const placeholder = placeholderImage;
+  const placeholderBanner =
+    "https://images.unsplash.com/photo-1552688468-d87e6f7a58f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80";
   const onImageError = (event) => {
     event.target.onerror = null;
     event.target.src = placeholder;
+  };
+
+  const onImageErrorBanner = (event) => {
+    event.target.onerror = null;
+    event.target.src = placeholderBanner;
   };
 
   const userProfile = useContext(AuthContext);
@@ -41,9 +48,9 @@ export default function UserCard() {
           <div className="user-body__banner">
             <Card.Img
               className="user-body__banner-item"
-              src={user.banner ? user.banner : placeholder}
+              src={user.banner ? user.banner : placeholderBanner}
               alt={user.name}
-              onError={onImageError}
+              onError={onImageErrorBanner}
             />
           </div>
           <div className="user-body__avatar">
