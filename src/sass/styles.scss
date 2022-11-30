@@ -1,13 +1,5 @@
 //Custom
-// $colour-error: rgb(247, 11, 11);
-// $colour-warning: rgb(236, 158, 24);
-// $colour-success: rgb(6, 131, 6);
 
-// $blue: hsl(246, 80%, 60%);
-// $blue-shade: hsl(246, 61%, 53%, 1);
-// $very-dark-blue: hsl(226, 43%, 10%);
-// $dark-blue: hsl(235, 46%, 20%);
-// $pale-blue: hsl(236, 100%, 87%);
 $color-grey-vary-dark: #1a1a1a;
 $color-grey-vary-dark-transparent: #1a1a1ae8;
 $color-gray-dark: #282828;
@@ -27,10 +19,9 @@ $color-warning-muted: hsla(41, 79, 38, 0.3);
 //Bootstrap
 $theme-colors: (
   "primary": $color-green,
-  "secondary": #833bec,
-  "success": #1ce1ac,
+  "success": $color-success,
   "info": #6eadf4,
-  "warning": #ffbe0b,
+  "warning": $color-warning,
   "danger": $color-danger,
   "light": #c0ccda,
   "dark": $color-gray-dark,
@@ -44,8 +35,6 @@ $border-radius: 4px;
 $input-border-color: transparent;
 $input-bg: $color-grey-vary-dark;
 $btn-link-color: $color-gray-medium;
-// $btn-font-weight: bold;
-// $input-btn-padding-y: 1rem;
 $input-btn-padding-x: 1rem;
 $btn-font-weight: 500;
 $dropdown-dark-bg: $color-grey-vary-dark;
@@ -59,7 +48,6 @@ $popover-bg: black;
 $popover-border-color: $color-grey-vary-dark;
 $popover-body-padding-x: 0.5rem;
 $popover-body-padding-y: 0.5rem;
-// $input-color: $very-dark-blue;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -67,7 +55,6 @@ $popover-body-padding-y: 0.5rem;
 
 @import "./partials/general";
 @import "./partials/navbar";
-@import "./partials/register";
 @import "./partials/forms";
 @import "./partials/post-card";
 @import "./partials/button-styles";
@@ -75,5 +62,3 @@ $popover-body-padding-y: 0.5rem;
 @import "./partials/modals";
 @import "./partials/profile-card";
 @import "./partials/profile-specific";
-// @import "./partials/forms";
-// @import "./partials/cardStyles";
