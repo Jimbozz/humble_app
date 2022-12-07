@@ -1,4 +1,5 @@
 # Humble
+<img width="700" alt="social-media-app" src="https://user-images.githubusercontent.com/79139294/206201690-3ca24bc8-a6d6-45ee-947d-da5f28ec41c2.png">
 
 This is my submission for Project Exam 2.
 Humble is a social platform where like-minded users can share thoughts and discuss their favourite topics. You can react and comment on any post, as well as edit and delete any post you have created. A user may also follow and un-follow any other profile on the platform.
@@ -33,6 +34,10 @@ Live site: [https://humbleapp.netlify.app/login](https://humbleapp.netlify.app/l
 
 Clone the repo. Make sure you have `node` and `npm` installed on you machine.
 
+```bash
+git clone git@github.com:Noroff-FEU-Assignments/project-exam-2-Jimbozz.git
+```
+
 Installation:
 
 `npm install`
@@ -59,3 +64,7 @@ Password: Jesse123
 ## Prototype
 
 Link to prototype: [https://www.figma.com/file/71d1cp4GSmm9JStAEKczLb/project-exam-2?node-id=0%3A1](https://www.figma.com/file/71d1cp4GSmm9JStAEKczLb/project-exam-2?node-id=0%3A1)
+
+## Contact
+
+[My LinkedIn page](https://www.linkedin.com/in/jamesbadenhorst/)
